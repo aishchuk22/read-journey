@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 20px 10px 20px;
+  background-color: var(--bg);
+  padding: 11px;
+  border-radius: 15px;
+}
+
+.logo {
+  width: 42px;
+  height: 17px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: var(--textOnAccent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.burger {
+  width: 28px;
+  height: 28px;
+  fill: var(--text);
+}

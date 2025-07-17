@@ -42,25 +42,27 @@ export const logout = createAsyncThunk(
 );
 
 export const refreshUser = createAsyncThunk(
-  'auth/refresh',
+  "auth/refreshUser",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
+    const token = state.auth.token;
 
-    if (!persistedToken) {
-      return thunkAPI.rejectWithValue('Unable to fetch user — no token');
+    if (!token) {
+      return thunkAPI.rejectWithValue("No token");
     }
 
     try {
-      setAuthHeader(persistedToken);
-      const { data } = await axios.get('/users/current');
-      return data;
-    // eslint-disable-next-line no-unused-vars
+      const res = await axios.get("/users/current", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue('Failed to refresh user');
+      return thunkAPI.rejectWithValue(error.response?.data?.message || error.message);
     }
   }
 );
+
 
 const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;

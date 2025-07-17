@@ -1,16 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
-import RegisterPage from "./pages/RegisterPage";
-import LoginPage from "./pages/LoginPage";
+import { BrowserRouter } from "react-router-dom";
+import AppContent from "./components/AppContent/AppContent";
 
 function App() {
   return (
     <BrowserRouter basename="/read-journey">
-      <Routes>
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-      </Routes>
-      <Toaster position="top-right" reverseOrder={false} />
+      <AppContent />
     </BrowserRouter>
   );
 }

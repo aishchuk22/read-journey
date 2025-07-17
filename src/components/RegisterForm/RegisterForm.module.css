@@ -1,4 +1,4 @@
-.form {
+form {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -10,14 +10,14 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.input {
+input {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid var(--border);
   font-size: 16px;
 }
 
-.button {
+button {
   background-color: var(--accent);
   color: var(--textOnAccent);
   padding: 10px;
@@ -28,6 +28,6 @@
   transition: background-color 0.3s ease;
 }
 
-.button:hover {
+button:hover {
   background-color: var(--accentHover);
 }
