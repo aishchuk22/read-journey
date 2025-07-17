@@ -16,10 +16,20 @@
   font-style: normal;
 }
 
+[data-theme="dark"] {
+  --bg: #1f1f1f;
+  --text: #f9f9f9;
+  --border: #444;
+  --accent: #7b91f3;
+  --accentHover: #5c73d6;
+  --textOnAccent: #fff;
+}
+
 body {
   font-family: "Gilroy", sans-serif;
-  color: #f9f9f9;
   box-sizing: border-box;
+  background-color: #141414;
+  color: var(--text);
 }
 
 a {

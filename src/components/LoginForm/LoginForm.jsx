@@ -1,38 +1,30 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import styles from "./LoginForm.module.css";
-import { loginUser } from "../../services/authApi";
+import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import loginSchema from "../../validation/loginSchema";
 
-const schema = yup.object().shape({
-  email: yup
-    .string()
-    .required("Email is required")
-    .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, "Invalid email format"),
-  password: yup
-    .string()
-    .min(7, "Minimum 7 characters")
-    .required("Password is required"),
-});
+import { login } from "../../redux/auth/authOperations";
+import styles from "./LoginForm.module.css";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ resolver: yupResolver(loginSchema) });
 
   const onSubmit = async (data) => {
     try {
-      const res = await loginUser(data);
-      localStorage.setItem("token", res.accessToken); // тимчасово
+      await dispatch(login(data)).unwrap();
       toast.success("Login successful!");
       navigate("/recommended");
     } catch (err) {
-      const msg = err.response?.data?.message || "Login failed";
+      const msg = err || "Login failed";
       toast.error(msg);
     }
   };
