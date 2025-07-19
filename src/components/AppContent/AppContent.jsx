@@ -1,34 +1,27 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import RegisterPage from "../../pages/RegisterPage";
 import LoginPage from "../../pages/LoginPage";
-import Header from "../Header/Header";
+import RecommendedPage from "../../pages/RecommendedPage";
+
 import Loader from "../Loader/Loader";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
+import MainLayout from "../Layout/MainLayout";
 
 import { refreshUser } from "../../redux/auth/authOperations";
-import {
-  selectIsRefreshing,
-  selectIsLoggedIn,
-} from "../../redux/auth/authSelectors";
+import { selectIsRefreshing } from "../../redux/auth/authSelectors";
 
 const AppContent = () => {
   const dispatch = useDispatch();
-  const location = useLocation();
-
   const isRefreshing = useSelector(selectIsRefreshing);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-
-  const hideHeader =
-    location.pathname === "/login" || location.pathname === "/register";
 
   if (isRefreshing) {
     return <Loader />;
@@ -36,7 +29,6 @@ const AppContent = () => {
 
   return (
     <>
-      {!hideHeader && isLoggedIn && <Header />}
       <Routes>
         <Route
           path="/register"
@@ -48,13 +40,18 @@ const AppContent = () => {
           path="/login"
           element={<RestrictedRoute redirectTo="/" component={<LoginPage />} />}
         />
+
         <Route
           path="/"
           element={
-            <PrivateRoute redirectTo="/login" component={<div>HomePage</div>} />
+            <PrivateRoute redirectTo="/login" component={<MainLayout />} />
           }
-        />
+        >
+          <Route index element={<div>HomePage</div>} />
+          <Route path="recommended" element={<RecommendedPage />} />
+        </Route>
       </Routes>
+
       <Toaster position="top-center" reverseOrder={false} />
     </>
   );
