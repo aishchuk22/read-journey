@@ -1,19 +1,14 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../redux/auth/authOperations";
-import { Menu, X } from "lucide-react";
+import { useSelector } from "react-redux";
+import { Menu } from "lucide-react";
 import logo from "../../assets/react.svg";
 import styles from "./Header.module.css";
+import MobileMenu from "../MobileMenu/MobileMenu";
 
 const Header = () => {
-  const dispatch = useDispatch();
   const name = useSelector((state) => state.auth.user?.name || "");
   const firstLetter = name.charAt(0).toUpperCase();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleLogout = () => {
-    dispatch(logout());
-  };
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -26,21 +21,18 @@ const Header = () => {
       <div className={styles.right}>
         <div className={styles.avatar}>{firstLetter}</div>
 
-        <button onClick={handleLogout} className={styles.logout}>
-          Logout
-        </button>
-
-        <button
-          onClick={toggleMenu}
-          className={styles.burgerBtn}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {!isMenuOpen && (
+          <button
+            onClick={toggleMenu}
+            className={styles.burgerBtn}
+            aria-label="Toggle menu"
+          >
+            <Menu size={28} />
+          </button>
+        )}
       </div>
 
-      {/* компонент MobileMenu */}
-      {/* {isMenuOpen && <MobileMenu onClose={toggleMenu} />} */}
+      {isMenuOpen && <MobileMenu onClose={toggleMenu} />}
     </header>
   );
 };
