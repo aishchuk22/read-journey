@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import RegisterPage from "../../pages/RegisterPage";
@@ -47,7 +47,7 @@ const AppContent = () => {
             <PrivateRoute redirectTo="/login" component={<MainLayout />} />
           }
         >
-          <Route index element={<div>HomePage</div>} />
+          <Route index element={<Navigate to="/recommended" replace />} />
           <Route path="recommended" element={<RecommendedPage />} />
         </Route>
       </Routes>
