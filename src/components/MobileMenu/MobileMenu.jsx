@@ -1,63 +1,33 @@
+import { X } from "lucide-react";
 import styles from "./MobileMenu.module.css";
+import Navigation from "../Navigation/Navigation";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/auth/authOperations";
-import { NavLink } from "react-router-dom";
-import { useState } from "react";
-import { X } from "lucide-react";
 
-const MobileMenu = ({ onClose }) => {
+const MobileMenu = ({ onClose, isClosing }) => {
   const dispatch = useDispatch();
-  const [isClosing, setIsClosing] = useState(false);
-
-  const handleClose = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      onClose();
-    }, 300);
-  };
 
   const handleLogout = () => {
     dispatch(logout());
-    handleClose();
+    onClose();
   };
 
   return (
     <>
       <div
         className={`${styles.backdrop} ${isClosing ? styles.fadeOut : ""}`}
-        onClick={handleClose}
-      ></div>
-
+        onClick={onClose}
+      />
       <div className={`${styles.menu} ${isClosing ? styles.slideOut : ""}`}>
         <button
           className={styles.closeBtn}
-          onClick={handleClose}
+          onClick={onClose}
           aria-label="Close menu"
         >
           <X size={28} />
         </button>
 
-        <nav className={styles.nav}>
-          <NavLink
-            to="/recommended"
-            className={({ isActive }) =>
-              `${styles.link} ${isActive ? styles.active : ""}`
-            }
-            onClick={handleClose}
-          >
-            Home
-          </NavLink>
-
-          <NavLink
-            to="/library"
-            className={({ isActive }) =>
-              `${styles.link} ${isActive ? styles.active : ""}`
-            }
-            onClick={handleClose}
-          >
-            My library
-          </NavLink>
-        </nav>
+        <Navigation />
 
         <button className={styles.logoutBtn} onClick={handleLogout}>
           Log out
