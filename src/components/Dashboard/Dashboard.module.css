@@ -1,0 +1,55 @@
+.dashboardWrapper {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filters input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.filters button {
+  align-self: flex-start;
+  padding: 8px 16px;
+  background-color: #4f4f4f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.description {
+  font-size: 14px;
+  color: #333;
+}
+
+.link {
+  color: #5c8df6;
+  text-decoration: underline;
+}
+
+.quote {
+  font-style: italic;
+  color: #666;
+}
+
+.quote span {
+  display: block;
+  margin-top: 8px;
+  font-weight: bold;
+}

@@ -1,0 +1,69 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(17, 17, 17, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #f6f6f6;
+  border-radius: 20px;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.author,
+.pages {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.addButton {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  background-color: #4f9cdb;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.addButton:hover {
+  background-color: #317ec7;
+}

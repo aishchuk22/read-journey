@@ -1,0 +1,36 @@
+.card {
+  list-style: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.info {
+  padding: 0 4px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f1f1f;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.author {
+  font-size: 14px;
+  color: #8a8a89;
+}
