@@ -1,6 +1,6 @@
 import styles from "./Dashboard.module.css";
 import { Link } from "react-router-dom";
-import { FiArrowRight } from "react-icons/fi"; // або { IoArrowForward } from "react-icons/io5"
+import { FiArrowRight } from "react-icons/fi";
 
 const Dashboard = () => {
   return (
@@ -9,23 +9,23 @@ const Dashboard = () => {
         <p className={styles.label}>Filters:</p>
 
         <div className={styles.group}>
-          <label className={styles.floatingLabel}>
-            <span className={styles.span}>Book title:</span>
+          <div className={styles.inputWrapper}>
+            <span className={styles.inputLabel}>Book title:</span>
             <input
               className={styles.input}
               type="text"
               placeholder="Enter text"
             />
-          </label>
+          </div>
 
-          <label className={styles.floatingLabel}>
-            <span className={styles.span}>The author:</span>
+          <div className={styles.inputWrapper}>
+            <span className={styles.inputLabel}>The author:</span>
             <input
               className={styles.input}
               type="text"
               placeholder="Enter text"
             />
-          </label>
+          </div>
         </div>
 
         <button type="submit" className={styles.button}>

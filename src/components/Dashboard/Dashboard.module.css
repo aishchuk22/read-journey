@@ -4,84 +4,85 @@
   justify-content: center;
   gap: 20px;
   padding: 20px;
-  /* Змінено: тепер працює як хедер з марджинами від країв */
-  margin: 0 20px;
-  background-color: #1c1c1c;
-  border-radius: 20px;
+  background-color: #1f1f1f;
+  border-radius: 30px;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 8px;
   border-radius: 20px;
   width: 100%;
-  box-sizing: border-box;
 }
 
 .label {
-  color: #fff;
-  font-size: 14px;
+  color: var(--text);
+  font-size: 10px;
   margin: 0;
-  margin-bottom: 8px;
+  margin-left: 14px;
 }
 
 .group {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 100%;
-}
-
-.floatingLabel {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
 }
 
-.floatingLabel span {
-  color: #9ca3af;
-  font-size: 12px;
-  margin: 0;
-}
-
-.floatingLabel input {
-  background-color: #2a2a2a;
-  border: 1px solid #404040;
-  border-radius: 6px;
-  color: #fff;
-  font-size: 14px;
-  padding: 10px 12px;
-  outline: none;
-  transition: border-color 0.2s;
+.inputWrapper {
+  position: relative;
   width: 100%;
-  box-sizing: border-box;
+  background-color: #262626;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  gap: 8px;
+  transition: border-color 0.2s;
 }
 
-.floatingLabel input:focus {
-  border-color: #666;
+.inputLabel {
+  color: #686868;
+  font-size: 12px;
+  line-height: 133%;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.floatingLabel input::placeholder {
-  color: #666;
+.inputWrapper .input {
+  background-color: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 12px;
+  line-height: 133%;
+  outline: none;
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+}
+
+.inputWrapper .input::placeholder {
+  color: var(--text);
 }
 
 .button {
   background-color: transparent;
-  color: #fff;
-  border: 1px solid #666;
+  color: var(--text);
+  border: 1px solid rgba(249, 249, 249, 0.2);
   border-radius: 30px;
-  padding: 10px 24px;
+  padding: 10px 20px;
   font-size: 14px;
+  line-height: 129%;
+  font-weight: 700;
   align-self: flex-start;
-  cursor: pointer;
-  margin-top: 6px;
+  margin-top: 12px;
   transition: border-color 0.2s;
 }
 
 .button:hover {
-  border-color: #999;
+  background: var(--text);
+  color: var(--bg);
 }
 
 .box {
@@ -95,7 +96,7 @@
 }
 
 .heading {
-  color: --var(text);
+  color: var(--text);
   font-weight: 700;
   font-size: 18px;
   margin: 0;
