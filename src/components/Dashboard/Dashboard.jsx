@@ -1,5 +1,6 @@
 import styles from "./Dashboard.module.css";
 import { Link } from "react-router-dom";
+import { FiArrowRight } from "react-icons/fi"; // або { IoArrowForward } from "react-icons/io5"
 
 const Dashboard = () => {
   return (
@@ -35,23 +36,28 @@ const Dashboard = () => {
       <div className={styles.box}>
         <p className={styles.heading}>Start your workout</p>
         <ul className={styles.steps}>
-          <li>
+          <li className={styles.eachStep}>
             <span className={styles.number}>1</span>
-            <p>
-              <b>Create a personal library</b>: add the books you intend to read
-              to it.
+            <p className={styles.eachStepText}>
+              <span className={styles.eachStepTextSpan}>
+                Create a personal library
+              </span>
+              : add the books you intend to read to it.
             </p>
           </li>
-          <li>
+          <li className={styles.eachStep}>
             <span className={styles.number}>2</span>
-            <p>
-              <b>Create your first workout</b>: define a goal, choose a period,
-              start training.
+            <p className={styles.eachStepText}>
+              <span className={styles.eachStepTextSpan}>
+                Create your first workout
+              </span>
+              : define a goal, choose a period, start training.
             </p>
           </li>
         </ul>
         <Link to="/library" className={styles.link}>
-          My library
+          <span className={styles.linkText}>My library</span>
+          <FiArrowRight className={styles.arrow} />
         </Link>
       </div>
     </section>
