@@ -32,13 +32,24 @@ const RegisterForm = () => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <input type="text" placeholder="Name" {...formRegister("name")} />
+      <input
+        className={styles.input}
+        type="text"
+        placeholder="Name"
+        {...formRegister("name")}
+      />
       {errors.name && <p className={styles.error}>{errors.name.message}</p>}
 
-      <input type="email" placeholder="Email" {...formRegister("email")} />
+      <input
+        className={styles.input}
+        type="email"
+        placeholder="Email"
+        {...formRegister("email")}
+      />
       {errors.email && <p className={styles.error}>{errors.email.message}</p>}
 
       <input
+        className={styles.input}
         type="password"
         placeholder="Password"
         {...formRegister("password")}
@@ -47,7 +58,9 @@ const RegisterForm = () => {
         <p className={styles.error}>{errors.password.message}</p>
       )}
 
-      <button type="submit">Register</button>
+      <button className={styles.button} type="submit">
+        Register
+      </button>
 
       <p>
         Already have an account? <Link to="/login">Log in</Link>

@@ -33,7 +33,7 @@ const Header = ({ toggleMenu }) => {
           className={styles.burgerBtn}
           aria-label="Toggle menu"
         >
-          <Menu size={28} />
+          <Menu size={28} color="white" />
         </button>
       </div>
     </header>

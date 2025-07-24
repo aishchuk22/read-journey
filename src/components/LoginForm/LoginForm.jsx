@@ -31,15 +31,27 @@ const LoginForm = () => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <input type="email" placeholder="Email" {...register("email")} />
+      <input
+        className={styles.input}
+        type="email"
+        placeholder="Email"
+        {...register("email")}
+      />
       {errors.email && <p className={styles.error}>{errors.email.message}</p>}
 
-      <input type="password" placeholder="Password" {...register("password")} />
+      <input
+        className={styles.input}
+        type="password"
+        placeholder="Password"
+        {...register("password")}
+      />
       {errors.password && (
         <p className={styles.error}>{errors.password.message}</p>
       )}
 
-      <button type="submit">Log In</button>
+      <button className={styles.button} type="submit">
+        Log In
+      </button>
 
       <p>
         Don’t have an account? <Link to="/register">Register</Link>
