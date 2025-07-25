@@ -26,7 +26,7 @@ export default function BookModal({ book, onClose }) {
 
         <img src={book.imageUrl} alt={book.title} className={styles.image} />
         <h2 className={styles.title}>{book.title}</h2>
-        <p className={styles.author}>by {book.author}</p>
+        <p className={styles.author}>{book.author}</p>
         <p className={styles.pages}>Pages: {book.totalPages}</p>
 
         <button className={styles.addButton}>Add to library</button>
