@@ -8,7 +8,6 @@ import {
   selectBooksError,
   selectBooksTotalPages,
 } from "../../redux/books/booksSelectors";
-import Loader from "../Loader/Loader";
 import BookCard from "../BookCard/BookCard";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
@@ -20,14 +19,39 @@ const RecommendedBooks = () => {
   const totalPages = useSelector(selectBooksTotalPages);
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [slideDirection, setSlideDirection] = useState("");
+  const [nextBooks, setNextBooks] = useState([]);
+  const [showNextBooks, setShowNextBooks] = useState(false);
 
   useEffect(() => {
     dispatch(fetchRecommendedBooks(currentPage));
   }, [dispatch, currentPage]);
 
-  const handlePageChange = (newPage) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      setCurrentPage(newPage);
+  const handlePageChange = async (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages && !isAnimating) {
+      setIsAnimating(true);
+
+      const newBooksResponse = await dispatch(fetchRecommendedBooks(newPage));
+      setNextBooks(newBooksResponse.payload.results || []);
+
+      if (newPage > currentPage) {
+        setSlideDirection("slide-left");
+      } else {
+        setSlideDirection("slide-right");
+      }
+
+      setTimeout(() => {
+        setShowNextBooks(true);
+        setCurrentPage(newPage);
+
+        setTimeout(() => {
+          setIsAnimating(false);
+          setSlideDirection("");
+          setShowNextBooks(false);
+          setNextBooks([]);
+        }, 400);
+      }, 50);
     }
   };
 
@@ -38,14 +62,14 @@ const RecommendedBooks = () => {
         <div className={css.arrowNavigation}>
           <button
             onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
+            disabled={currentPage === 1 || isAnimating}
             className={css.arrowBtn}
           >
             <IoIosArrowBack />
           </button>
           <button
             onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
+            disabled={currentPage === totalPages || isAnimating}
             className={css.arrowBtn}
           >
             <IoIosArrowForward />
@@ -57,19 +81,33 @@ const RecommendedBooks = () => {
         <p className={css.empty}>No recommended books found.</p>
       )}
 
-      {isLoading && (
-        <div className={css.loader}>
-          <Loader width={40} height={40} color="red" secondaryColor="#DCDCDC" />
-        </div>
-      )}
-
       {error && <p className={css.error}>Error: {error}</p>}
 
-      <ul className={css.bookList}>
-        {books.map((book) => (
-          <BookCard key={book._id} book={book} />
-        ))}
-      </ul>
+      <div className={css.sliderContainer}>
+        <ul
+          className={`${css.bookList} ${
+            slideDirection ? css[slideDirection] : ""
+          }`}
+        >
+          {books.map((book) => (
+            <BookCard key={book._id} book={book} />
+          ))}
+        </ul>
+
+        {showNextBooks && (
+          <ul
+            className={`${css.bookList} ${css.nextBookList} ${
+              slideDirection === "slide-left"
+                ? css.slideInFromRight
+                : css.slideInFromLeft
+            }`}
+          >
+            {nextBooks.map((book) => (
+              <BookCard key={`next-${book._id}`} book={book} />
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };
