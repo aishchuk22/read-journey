@@ -4,33 +4,77 @@
   transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  max-width: 137px;
+  flex-shrink: 0;
+  background: transparent;
+  padding: 0;
+  border: none;
 }
 
 .card:hover {
-  transform: scale(1.02);
+  transform: translateY(-2px);
 }
 
 .image {
   width: 100%;
-  height: auto;
-  border-radius: 12px;
+  height: 248px;
+  border-radius: 8px;
   object-fit: cover;
+  margin-bottom: 8px;
 }
 
 .info {
-  padding: 0 4px;
+  padding: 0;
+  margin-bottom: 20px;
 }
 
 .title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #1f1f1f;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
   margin-bottom: 2px;
-  line-height: 1.2;
+  line-height: 129%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .author {
-  font-size: 14px;
+  font-size: 10px;
+  color: #686868;
+  line-height: 120%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pages {
+  font-size: 10px;
   color: #8a8a89;
+}
+
+.addButton {
+  background: transparent;
+  border: 1px solid #4f2ee8;
+  color: #f9f9f9;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+  margin-top: auto;
+}
+
+.addButton:hover {
+  background: #4f2ee8;
+  color: #f9f9f9;
+}
+
+@media screen and (max-width: 375px) {
+  .card {
+    width: calc((100% - 21px) / 2);
+    min-width: 120px;
+  }
 }

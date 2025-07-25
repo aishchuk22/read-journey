@@ -1,68 +1,91 @@
 .wrapper {
   padding: 20px;
+  background-color: #1f1f1f;
+  border-radius: 30px;
 }
 
 .title {
-  font-size: 24px;
-  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.titleText {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 100%;
+}
+
+.arrowNavigation {
+  display: flex;
+  gap: 8px;
+}
+
+.arrowBtn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text);
+}
+
+.arrowBtn:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.arrowBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.arrowBtn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.empty {
+  color: #8a8a89;
+  text-align: center;
+  margin: 40px 0;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.error {
+  color: #e74c3c;
+  text-align: center;
+  margin: 20px 0;
 }
 
 .bookList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 16px;
+  display: flex;
+  gap: 21px;
   list-style: none;
   padding: 0;
 }
 
-.bookCard {
-  background-color: #f5f5f5;
-  border-radius: 12px;
-  padding: 12px;
-  text-align: center;
+@media screen and (min-width: 320px) and (max-width: 375px) {
+  .wrapper {
+    margin: 0 calc(20px - (375px - 100vw) * 0.1) 10px;
+  }
 }
 
-.cover {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.bookTitle {
-  font-weight: bold;
-  font-size: 16px;
-  margin: 8px 0 4px;
-}
-
-.bookAuthor {
-  font-size: 14px;
-  color: #555;
-}
-
-.pagination {
-  margin-top: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-}
-
-.pageBtn {
-  background-color: transparent;
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.pageBtn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.pageInfo {
-  font-size: 14px;
+@media screen and (min-width: 375px) {
+  .wrapper {
+    max-width: 335px;
+    margin: 0 auto 10px;
+  }
 }

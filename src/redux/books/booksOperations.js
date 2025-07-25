@@ -13,7 +13,7 @@ export const fetchRecommendedBooks = createAsyncThunk(
         return thunkAPI.rejectWithValue('No token available');
       }
 
-      const data = await getRecommendedBooks({ page, limit: 8 });
+      const data = await getRecommendedBooks({ page, limit: 2 });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

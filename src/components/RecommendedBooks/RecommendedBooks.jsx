@@ -6,17 +6,17 @@ import {
   selectBooks,
   selectBooksLoading,
   selectBooksError,
-  selectBooksPage,
   selectBooksTotalPages,
 } from "../../redux/books/booksSelectors";
 import Loader from "../Loader/Loader";
+import BookCard from "../BookCard/BookCard";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 const RecommendedBooks = () => {
   const dispatch = useDispatch();
   const books = useSelector(selectBooks);
   const isLoading = useSelector(selectBooksLoading);
   const error = useSelector(selectBooksError);
-  const page = useSelector(selectBooksPage);
   const totalPages = useSelector(selectBooksTotalPages);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,16 +33,33 @@ const RecommendedBooks = () => {
 
   return (
     <div className={css.wrapper}>
-      <h2 className={css.title}>Recommended Books</h2>
+      <div className={css.title}>
+        <h2 className={css.titleText}>Recommended</h2>
+        <div className={css.arrowNavigation}>
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className={css.arrowBtn}
+          >
+            <IoIosArrowBack />
+          </button>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className={css.arrowBtn}
+          >
+            <IoIosArrowForward />
+          </button>
+        </div>
+      </div>
+
+      {!isLoading && books.length === 0 && (
+        <p className={css.empty}>No recommended books found.</p>
+      )}
 
       {isLoading && (
         <div className={css.loader}>
-          <Loader
-            width={40}
-            height={40}
-            color="#4F2EE8"
-            secondaryColor="#DCDCDC"
-          />
+          <Loader width={40} height={40} color="red" secondaryColor="#DCDCDC" />
         </div>
       )}
 
@@ -50,41 +67,9 @@ const RecommendedBooks = () => {
 
       <ul className={css.bookList}>
         {books.map((book) => (
-          <li key={book._id} className={css.bookCard}>
-            <img
-              src={book.imageUrl}
-              alt={book.title}
-              className={css.bookImage}
-            />
-            <div className={css.bookInfo}>
-              <h3 className={css.bookTitle}>{book.title}</h3>
-              <p className={css.bookAuthor}>{book.author}</p>
-              <p className={css.bookPages}>{book.totalPages} pages</p>
-            </div>
-            <button className={css.addButton}>Add to library</button>
-          </li>
+          <BookCard key={book._id} book={book} />
         ))}
       </ul>
-
-      <div className={css.pagination}>
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          className={css.pageBtn}
-        >
-          Prev
-        </button>
-        <span className={css.pageIndicator}>
-          {currentPage} / {totalPages}
-        </span>
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className={css.pageBtn}
-        >
-          Next
-        </button>
-      </div>
     </div>
   );
 };
