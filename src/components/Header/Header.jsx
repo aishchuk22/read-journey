@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Menu } from "lucide-react";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
 import logo from "../../assets/react.svg";
@@ -33,7 +33,7 @@ const Header = ({ toggleMenu }) => {
           className={styles.burgerBtn}
           aria-label="Toggle menu"
         >
-          <Menu size={28} color="white" />
+          <HiOutlineMenuAlt3 size={28} color="white" />
         </button>
       </div>
     </header>
