@@ -146,7 +146,7 @@
   background-color: var(--text);
   color: var(--bg);
   padding: 12px 45px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 30px;
   font-weight: 700;
   font-size: 14px;
@@ -157,7 +157,9 @@
 }
 
 .button:hover {
-  background-color: #3a7bd6;
+  background-color: var(--bg);
+  color: var(--text);
+  border: 1px solid rgba(227, 227, 227, 0.5);
 }
 
 .registerLink {
@@ -166,22 +168,18 @@
   line-height: 117%;
   letter-spacing: -0.02em;
   text-decoration: underline;
+  transition: color 0.2s;
   margin: 0;
 }
 
-.link {
-  color: #686868;
-  text-decoration: underline;
-  transition: color 0.2s;
-}
-
-.link:hover {
+.registerLink:hover {
   color: var(--text);
 }
 
-.error {
+.errorText {
   color: #ff6b6b;
   font-size: 12px;
+  margin: -6px 0 0 14px;
 }
 
 .phoneSection {

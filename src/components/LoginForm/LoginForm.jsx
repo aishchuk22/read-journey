@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { MdError, MdCheckCircle } from "react-icons/md";
+import { MdError } from "react-icons/md";
 import loginSchema from "../../validation/loginSchema";
 
 import { login } from "../../redux/auth/authOperations";
@@ -18,20 +18,14 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [touchedFields, setTouchedFields] = useState({});
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    watch,
+    formState: { errors, isSubmitted },
   } = useForm({
     resolver: yupResolver(loginSchema),
-    mode: "onChange",
   });
-
-  const watchedEmail = watch("email");
-  const watchedPassword = watch("password");
 
   const onSubmit = async (data) => {
     try {
@@ -44,39 +38,16 @@ const LoginForm = () => {
     }
   };
 
-  const handleFieldBlur = (fieldName) => {
-    setTouchedFields((prev) => ({ ...prev, [fieldName]: true }));
-  };
-
-  const getInputState = (fieldName, value, error) => {
-    if (!touchedFields[fieldName] && !value) return "default";
-    if (error) return "error";
-    if (value && !error) return "success";
-    return "default";
-  };
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const renderPasswordIcon = () => {
-    const passwordState = getInputState(
-      "password",
-      watchedPassword,
-      errors.password
-    );
-
-    if (passwordState === "error") {
-      return <MdError className={styles.iconError} />;
+  const getInputWrapperClass = (fieldName) => {
+    // Показуємо помилки тільки після спроби відправки форми
+    if (isSubmitted && errors[fieldName]) {
+      return `${styles.inputWrapper} ${styles.error}`;
     }
-    if (passwordState === "success") {
-      return <MdCheckCircle className={styles.iconSuccess} />;
-    }
-    return showPassword ? (
-      <AiOutlineEyeInvisible className={styles.iconDefault} />
-    ) : (
-      <AiOutlineEye className={styles.iconDefault} />
-    );
+    return styles.inputWrapper;
   };
 
   return (
@@ -90,54 +61,51 @@ const LoginForm = () => {
             <span className={styles.titleAccent}>a book</span>
           </h1>
 
-          <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-            <div
-              className={`${styles.inputWrapper} ${
-                styles[getInputState("email", watchedEmail, errors.email)]
-              }`}
-            >
+          <form
+            className={styles.form}
+            onSubmit={handleSubmit(onSubmit)}
+            noValidate
+          >
+            <div className={getInputWrapperClass("email")}>
               <span className={styles.inputLabel}>Mail:</span>
               <input
                 className={styles.input}
                 type="email"
                 placeholder="Your@email.com"
                 {...register("email")}
-                onBlur={() => handleFieldBlur("email")}
               />
-              {getInputState("email", watchedEmail, errors.email) ===
-                "error" && <MdError className={styles.iconError} />}
-              {getInputState("email", watchedEmail, errors.email) ===
-                "success" && <MdCheckCircle className={styles.iconSuccess} />}
+              {isSubmitted && errors.email && (
+                <MdError className={styles.iconError} />
+              )}
             </div>
-            {errors.email && (
-              <p className={styles.error}>{errors.email.message}</p>
+            {isSubmitted && errors.email && (
+              <p className={styles.errorText}>{errors.email.message}</p>
             )}
 
-            <div
-              className={`${styles.inputWrapper} ${
-                styles[
-                  getInputState("password", watchedPassword, errors.password)
-                ]
-              }`}
-            >
+            <div className={getInputWrapperClass("password")}>
               <span className={styles.inputLabel}>Password:</span>
               <input
                 className={styles.input}
                 type={showPassword ? "text" : "password"}
                 placeholder="Yourpasswordhere"
                 {...register("password")}
-                onBlur={() => handleFieldBlur("password")}
               />
               <button
                 type="button"
                 className={styles.eyeButton}
                 onClick={togglePasswordVisibility}
               >
-                {renderPasswordIcon()}
+                {isSubmitted && errors.password ? (
+                  <MdError className={styles.iconError} />
+                ) : showPassword ? (
+                  <AiOutlineEyeInvisible className={styles.iconDefault} />
+                ) : (
+                  <AiOutlineEye className={styles.iconDefault} />
+                )}
               </button>
             </div>
-            {errors.password && (
-              <p className={styles.error}>{errors.password.message}</p>
+            {isSubmitted && errors.password && (
+              <p className={styles.errorText}>{errors.password.message}</p>
             )}
 
             <div className={styles.bottomRow}>
