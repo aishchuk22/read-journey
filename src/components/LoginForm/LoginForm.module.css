@@ -59,6 +59,20 @@
   padding: 14px;
   gap: 10px;
   transition: border-color 0.2s;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+}
+
+.inputWrapper.default {
+  border-color: transparent;
+}
+
+.inputWrapper.error {
+  border-color: #e74c3c;
+}
+
+.inputWrapper.success {
+  border-color: #27ae60;
 }
 
 .inputLabel {
@@ -82,6 +96,41 @@
 }
 
 .inputWrapper .input::placeholder {
+  color: var(--text);
+}
+
+.eyeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+}
+
+.iconDefault {
+  width: 20px;
+  height: 20px;
+  color: #686868;
+  transition: color 0.2s;
+}
+
+.iconError {
+  width: 20px;
+  height: 20px;
+  color: #e74c3c;
+}
+
+.iconSuccess {
+  width: 20px;
+  height: 20px;
+  color: #27ae60;
+}
+
+.eyeButton:hover .iconDefault {
   color: var(--text);
 }
 
@@ -133,7 +182,6 @@
 .error {
   color: #ff6b6b;
   font-size: 12px;
-  margin: -10px 0 0 14px;
 }
 
 .phoneSection {
