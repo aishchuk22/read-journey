@@ -7,6 +7,7 @@ import {
   selectBooksLoading,
   selectBooksError,
   selectBooksTotalPages,
+  selectBooksFilters,
 } from "../../redux/books/booksSelectors";
 import BookCard from "../BookCard/BookCard";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
@@ -17,6 +18,7 @@ const RecommendedBooks = () => {
   const isLoading = useSelector(selectBooksLoading);
   const error = useSelector(selectBooksError);
   const totalPages = useSelector(selectBooksTotalPages);
+  const filters = useSelector(selectBooksFilters);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -25,14 +27,30 @@ const RecommendedBooks = () => {
   const [showNextBooks, setShowNextBooks] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchRecommendedBooks(currentPage));
-  }, [dispatch, currentPage]);
+    dispatch(
+      fetchRecommendedBooks({
+        page: currentPage,
+        title: filters?.title || "",
+        author: filters?.author || "",
+      })
+    );
+  }, [dispatch, currentPage, filters]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filters]);
 
   const handlePageChange = async (newPage) => {
     if (newPage >= 1 && newPage <= totalPages && !isAnimating) {
       setIsAnimating(true);
 
-      const newBooksResponse = await dispatch(fetchRecommendedBooks(newPage));
+      const newBooksResponse = await dispatch(
+        fetchRecommendedBooks({
+          page: newPage,
+          title: filters?.title || "",
+          author: filters?.author || "",
+        })
+      );
       setNextBooks(newBooksResponse.payload.results || []);
 
       if (newPage > currentPage) {
@@ -55,6 +73,9 @@ const RecommendedBooks = () => {
     }
   };
 
+  const hasActiveFilters = filters?.title || filters?.author;
+  const hasBooks = books.length > 0;
+
   return (
     <div className={css.wrapper}>
       <div className={css.title}>
@@ -62,14 +83,14 @@ const RecommendedBooks = () => {
         <div className={css.arrowNavigation}>
           <button
             onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1 || isAnimating}
+            disabled={currentPage === 1 || isAnimating || !hasBooks}
             className={css.arrowBtn}
           >
             <IoIosArrowBack />
           </button>
           <button
             onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages || isAnimating}
+            disabled={currentPage === totalPages || isAnimating || !hasBooks}
             className={css.arrowBtn}
           >
             <IoIosArrowForward />
@@ -77,7 +98,14 @@ const RecommendedBooks = () => {
         </div>
       </div>
 
-      {!isLoading && books.length === 0 && (
+      {!isLoading && books.length === 0 && hasActiveFilters && (
+        <p className={css.empty}>
+          Unfortunately, no books were found for your request. Please try again
+          with different search parameters.
+        </p>
+      )}
+
+      {!isLoading && books.length === 0 && !hasActiveFilters && (
         <p className={css.empty}>No recommended books found.</p>
       )}
 

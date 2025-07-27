@@ -7,12 +7,25 @@ const initialState = {
   error: null,
   page: 1,
   totalPages: 1,
+  filters: {
+    title: '',
+    author: ''
+  }
 };
 
 const booksSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {},
+  reducers: {
+    setFilters: (state, action) => {
+      state.filters = action.payload;
+      state.page = 1;
+    },
+    clearFilters: (state) => {
+      state.filters = { title: '', author: '' };
+      state.page = 1;
+    }
+  },
   extraReducers: builder =>
     builder
       .addCase(fetchRecommendedBooks.pending, state => {
@@ -31,4 +44,5 @@ const booksSlice = createSlice({
       }),
 });
 
+export const { setFilters, clearFilters } = booksSlice.actions;
 export const booksReducer = booksSlice.reducer;

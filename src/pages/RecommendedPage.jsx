@@ -3,10 +3,9 @@ import RecommendedBooks from "../components/RecommendedBooks/RecommendedBooks";
 
 const RecommendedPage = () => {
   return (
-    <>
-      <Dashboard />
+    <Dashboard>
       <RecommendedBooks />
-    </>
+    </Dashboard>
   );
 };
 
