@@ -1,0 +1,177 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.filterText {
+  color: var(--text);
+  font-size: 10px;
+  margin: 0;
+  margin-left: 14px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  background-color: #262626;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  gap: 8px;
+  transition: border-color 0.2s;
+}
+
+.inputLabel {
+  color: #686868;
+  font-size: 12px;
+  line-height: 133%;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.input {
+  background-color: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 12px;
+  line-height: 133%;
+  outline: none;
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #4f92f7;
+}
+
+.inputWrapper .input::placeholder {
+  color: var(--text);
+}
+
+.inputError {
+  border-color: #ef4444;
+}
+
+.errorText {
+  font-size: 12px;
+  color: #ef4444;
+  margin: 4px 0 0 14px;
+}
+
+.input::placeholder {
+  color: rgba(249, 249, 249, 0.5);
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: var(--text);
+  border: 1px solid rgba(249, 249, 249, 0.5);
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.29;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  max-width: 105px;
+}
+
+.button:hover {
+  background-color: var(--text);
+  color: var(--bg);
+}
+
+.button:disabled {
+  background-color: rgba(79, 146, 247, 0.5);
+  cursor: not-allowed;
+}
+
+.recommendedSection {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #262626;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.recommendedTitle {
+  color: #e3e3e3;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0;
+  line-height: 100%;
+}
+
+.booksList {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-x: auto;
+}
+
+.homeLinkWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 3px;
+}
+
+.homeLink {
+  text-decoration: underline;
+  color: #686868;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 117%;
+  transition: color 0.3s ease;
+}
+
+.homeLink:hover {
+  color: #f9f9f9;
+}
+
+.arrowLink {
+  text-decoration: none;
+  color: rgba(249, 249, 249, 0.5);
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.arrowLink:hover {
+  color: #f9f9f9;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+}
+
+.loading {
+  color: rgba(249, 249, 249, 0.5);
+  font-size: 14px;
+  text-align: center;
+  padding: 20px 0;
+}

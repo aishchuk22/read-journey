@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import RegisterPage from "../../pages/RegisterPage";
 import LoginPage from "../../pages/LoginPage";
 import RecommendedPage from "../../pages/RecommendedPage";
+import LibraryPage from "../../pages/LibraryPage";
 
 import Loader from "../Loader/Loader";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -49,6 +50,7 @@ const AppContent = () => {
         >
           <Route index element={<Navigate to="/recommended" replace />} />
           <Route path="recommended" element={<RecommendedPage />} />
+          <Route path="library" element={<LibraryPage />} />
         </Route>
       </Routes>
 

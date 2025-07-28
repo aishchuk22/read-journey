@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchRecommendedBooks } from './booksOperations';
+import { fetchRecommendedBooks, addBookToLibrary, fetchUsersBooks, removeBookFromLibrary, validateAndAddBook } from './booksOperations';
 
 const initialState = {
   books: [],
+  myLibraryBooks: [],
   isLoading: false,
+  isLibraryLoading: false,
   error: null,
   page: 1,
   totalPages: 1,
@@ -41,6 +43,48 @@ const booksSlice = createSlice({
       .addCase(fetchRecommendedBooks.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+      // Додаємо обробку для validateAndAddBook
+      .addCase(validateAndAddBook.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(validateAndAddBook.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.myLibraryBooks.push(action.payload);
+      })
+      .addCase(validateAndAddBook.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(addBookToLibrary.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(addBookToLibrary.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.myLibraryBooks.push(action.payload);
+      })
+      .addCase(addBookToLibrary.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchUsersBooks.pending, state => {
+        state.isLibraryLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchUsersBooks.fulfilled, (state, action) => {
+        state.isLibraryLoading = false;
+        state.myLibraryBooks = action.payload;
+      })
+      .addCase(fetchUsersBooks.rejected, (state, action) => {
+        state.isLibraryLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(removeBookFromLibrary.fulfilled, (state, action) => {
+        state.myLibraryBooks = state.myLibraryBooks.filter(
+          book => book._id !== action.meta.arg
+        );
       }),
 });
 

@@ -17,3 +17,18 @@ export const getRecommendedBooks = async ({ page = 1, limit = 8, title = '', aut
   });
   return response.data;
 };
+
+export const addToLibrary = async (bookData) => {
+  const response = await axios.post(`${BASE_URL}/books/add`, bookData);
+  return response.data;
+};
+
+export const getUsersBooks = async () => {
+  const response = await axios.get(`${BASE_URL}/books/own`);
+  return response.data;
+};
+
+export const removeFromLibrary = async (bookId) => {
+  const response = await axios.delete(`${BASE_URL}/books/remove/${bookId}`);
+  return response.data;
+};

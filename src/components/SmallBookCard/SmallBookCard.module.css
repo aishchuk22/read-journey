@@ -1,0 +1,36 @@
+.bookCard {
+  display: flex;
+  flex-direction: column;
+  width: 71px;
+  flex-shrink: 0;
+}
+
+.bookImage {
+  width: 71px;
+  height: 107px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.bookTitle {
+  font-size: 10px;
+  font-weight: 700;
+  color: #f9f9f9;
+  line-height: 1.2;
+  margin: 0 0 2px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bookAuthor {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(249, 249, 249, 0.5);
+  line-height: 1.2;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
