@@ -27,7 +27,7 @@ const MobileMenu = ({ onClose, isClosing }) => {
           <X size={28} />
         </button>
 
-        <Navigation />
+        <Navigation onLinkClick={onClose} />
 
         <button className={styles.logoutBtn} onClick={handleLogout}>
           Log out

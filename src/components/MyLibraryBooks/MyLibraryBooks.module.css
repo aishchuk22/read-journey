@@ -59,11 +59,13 @@
   color: #686868;
   font-size: 14px;
   margin-top: 60px;
+  margin-bottom: 50px;
 }
 
 .booksList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(137px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   gap: 21px;
   list-style: none;
   padding: 0;

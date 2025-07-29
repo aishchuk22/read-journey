@@ -9,9 +9,10 @@ import {
   selectLibraryLoading,
 } from "../../redux/books/booksSelectors";
 import BookCard from "../BookCard/BookCard";
-import CustomSelect from "../CustomSelect/CustomSelect"; // імпортуй кастомний селект
+import CustomSelect from "../CustomSelect/CustomSelect";
 import styles from "./MyLibraryBooks.module.css";
 import booksIcon from "../../assets/booksIcon.png";
+import Loader from "../Loader/Loader";
 
 const MyLibraryBooks = () => {
   const dispatch = useDispatch();
@@ -58,7 +59,7 @@ const MyLibraryBooks = () => {
         />
       </div>
 
-      {isLoading && <p className={styles.loading}>Loading...</p>}
+      {isLoading && <Loader />}
 
       {!isLoading && myBooks.length === 0 && (
         <div className={styles.emptyState}>

@@ -13,6 +13,7 @@ import {
 } from "../../redux/books/booksSelectors";
 import { addBookSchema } from "../../validation/libraryDashboardFormSchema";
 import SmallBookCard from "../SmallBookCard/SmallBookCard";
+import SuccessModal from "../SuccessModal/SuccessModal";
 import styles from "./LibraryDashboard.module.css";
 
 const LibraryDashboard = () => {
@@ -26,6 +27,7 @@ const LibraryDashboard = () => {
     totalPages: "",
   });
   const [errors, setErrors] = useState({});
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   useEffect(() => {
     dispatch(
@@ -63,7 +65,7 @@ const LibraryDashboard = () => {
 
       await dispatch(validateAndAddBook(dataToValidate)).unwrap();
 
-      toast.success("Book successfully added to your library!");
+      setShowSuccessModal(true);
 
       setFormData({
         title: "",
@@ -161,7 +163,7 @@ const LibraryDashboard = () => {
         </div>
 
         <button type="submit" className={styles.button} disabled={isLoading}>
-          {isLoading ? "Adding..." : "Add book"}
+          Add book
         </button>
       </form>
 
@@ -187,6 +189,10 @@ const LibraryDashboard = () => {
           </Link>
         </div>
       </div>
+
+      {showSuccessModal && (
+        <SuccessModal onClose={() => setShowSuccessModal(false)} />
+      )}
     </div>
   );
 };

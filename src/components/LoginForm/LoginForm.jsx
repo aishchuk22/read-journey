@@ -30,7 +30,6 @@ const LoginForm = () => {
   const onSubmit = async (data) => {
     try {
       await dispatch(login(data)).unwrap();
-      toast.success("Login successful!");
       navigate("/recommended");
     } catch (err) {
       const msg = err || "Login failed";

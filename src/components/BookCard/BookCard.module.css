@@ -4,6 +4,7 @@
   transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
+  width: calc((100% - 21px) / 2);
   max-width: 137px;
   flex-shrink: 0;
   background: transparent;
@@ -121,6 +122,7 @@
 @media screen and (max-width: 375px) {
   .card {
     width: calc((100% - 21px) / 2);
-    min-width: 115px;
+    flex-shrink: 1;
+    max-width: 100%;
   }
 }
