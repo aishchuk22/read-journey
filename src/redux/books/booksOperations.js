@@ -41,7 +41,8 @@ export const validateAndAddBook = createAsyncThunk(
 
       const exactMatch = searchResult.results.find(book => 
         book.title.toLowerCase().trim() === bookData.title.toLowerCase().trim() &&
-        book.author.toLowerCase().trim() === bookData.author.toLowerCase().trim()
+        book.author.toLowerCase().trim() === bookData.author.toLowerCase().trim() &&
+        book.totalPages === bookData.totalPages
       );
 
       if (!exactMatch) {
@@ -49,17 +50,16 @@ export const validateAndAddBook = createAsyncThunk(
       }
 
       const bookDataToSend = {
-        title: bookData.title.trim(),
-        author: bookData.author.trim(),
-        totalPages: bookData.totalPages,
+        title: exactMatch.title,
+        author: exactMatch.author,
+        totalPages: exactMatch.totalPages,
       };
 
       const addedBook = await addToLibrary(bookDataToSend);
 
-      // Повертаємо об'єкт з imageUrl, але не відправляємо його на сервер
       return {
         ...addedBook,
-        imageUrl: exactMatch.imageUrl, // можеш використати для відображення в UI
+        imageUrl: exactMatch.imageUrl,
       };
 
     } catch (error) {
