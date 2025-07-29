@@ -1,14 +1,14 @@
 .bookCard {
   display: flex;
   flex-direction: column;
-  width: 71px;
+  width: clamp(60px, calc((100% - 40px) / 3), 71px);
   flex-shrink: 0;
 }
 
 .bookImage {
   width: 71px;
   height: 107px;
-  object-fit: cover;
+  object-fit: fill;
   border-radius: 8px;
   margin-bottom: 8px;
 }
@@ -33,4 +33,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+@media (max-width: 375px) {
+  .bookCard {
+    width: calc((100% - 40px) / 3); /* 3 картки + gap */
+    max-width: 71px;
+    object-fit: cover;
+  }
 }

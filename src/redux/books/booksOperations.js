@@ -48,8 +48,20 @@ export const validateAndAddBook = createAsyncThunk(
         return thunkAPI.rejectWithValue('Book not found in our database. Please try again.');
       }
 
-      const data = await addToLibrary(bookData);
-      return data;
+      const bookDataToSend = {
+        title: bookData.title.trim(),
+        author: bookData.author.trim(),
+        totalPages: bookData.totalPages,
+      };
+
+      const addedBook = await addToLibrary(bookDataToSend);
+
+      // Повертаємо об'єкт з imageUrl, але не відправляємо його на сервер
+      return {
+        ...addedBook,
+        imageUrl: exactMatch.imageUrl, // можеш використати для відображення в UI
+      };
+
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data?.message || error.message);
     }
@@ -86,8 +98,21 @@ export const fetchUsersBooks = createAsyncThunk(
         return thunkAPI.rejectWithValue('No token available');
       }
 
-      const data = await getUsersBooks();
-      return data;
+      const userBooks = await getUsersBooks();
+      const allRecommended = await getRecommendedBooks({ limit: 1000 });
+
+      const enrichedBooks = userBooks.map(userBook => {
+        const match = allRecommended.results.find(rec =>
+          rec.title.toLowerCase().trim() === userBook.title.toLowerCase().trim() &&
+          rec.author.toLowerCase().trim() === userBook.author.toLowerCase().trim()
+        );
+        return {
+          ...userBook,
+          imageUrl: match?.imageUrl || "",
+        };
+      });
+
+      return enrichedBooks;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

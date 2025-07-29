@@ -88,7 +88,6 @@ const LibraryDashboard = () => {
     }
   };
 
-  // Відображаємо всі отримані книжки (максимум 3)
   const displayBooks = recommendedBooks;
 
   return (

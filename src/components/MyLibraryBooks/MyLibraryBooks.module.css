@@ -1,0 +1,72 @@
+.container {
+  padding: 40px 20px 65px;
+  max-width: 100%;
+  background: #1f1f1f;
+  border-radius: 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  line-height: 100%;
+}
+
+.loading {
+  text-align: center;
+  color: #686868;
+  font-size: 14px;
+  margin-top: 60px;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 63px 49px 35px;
+  gap: 10px;
+}
+
+.emptyIcon {
+  font-size: 48px;
+  padding: 25px;
+  background-color: #262626;
+  border-radius: 100%;
+}
+
+.emptyText {
+  color: var(--text);
+  font-size: 14px;
+  max-width: 274px;
+  margin: 0;
+}
+
+.highlight {
+  color: #686868;
+}
+
+.noResults {
+  text-align: center;
+  color: #686868;
+  font-size: 14px;
+  margin-top: 60px;
+}
+
+.booksList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(137px, 1fr));
+  gap: 21px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 14px;
+}

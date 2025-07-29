@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { FaRegTrashAlt } from "react-icons/fa";
 import styles from "./BookCard.module.css";
 import BookModal from "../BookModal/BookModal";
 
-const BookCard = ({ book }) => {
+const BookCard = ({ book, showRemoveButton = false, onRemove }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleOpenModal = () => setIsModalOpen(true);
+  const handleOpenModal = () => {
+    if (!showRemoveButton) setIsModalOpen(true);
+  };
+
   const handleCloseModal = () => setIsModalOpen(false);
 
   const { title, author, imageUrl } = book;
@@ -13,10 +17,27 @@ const BookCard = ({ book }) => {
   return (
     <>
       <li className={styles.card} onClick={handleOpenModal}>
-        <img src={imageUrl} alt={title} className={styles.image} />
-        <div className={styles.info}>
-          <h3 className={styles.title}>{title}</h3>
-          <p className={styles.author}>{author}</p>
+        <div className={styles.imageWrapper}>
+          <img src={imageUrl} alt={title} className={styles.image} />
+        </div>
+
+        <div className={styles.infoRow}>
+          <div className={styles.infoText}>
+            <h3 className={styles.title}>{title}</h3>
+            <p className={styles.author}>{author}</p>
+          </div>
+
+          {showRemoveButton && (
+            <button
+              className={styles.removeButton}
+              onClick={(e) => {
+                e.stopPropagation();
+                onRemove?.();
+              }}
+            >
+              <FaRegTrashAlt className={styles.icon} />
+            </button>
+          )}
         </div>
       </li>
 

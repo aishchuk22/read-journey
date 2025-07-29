@@ -9,7 +9,9 @@ import {
   selectLibraryLoading,
 } from "../../redux/books/booksSelectors";
 import BookCard from "../BookCard/BookCard";
+import CustomSelect from "../CustomSelect/CustomSelect"; // імпортуй кастомний селект
 import styles from "./MyLibraryBooks.module.css";
+import booksIcon from "../../assets/booksIcon.png";
 
 const MyLibraryBooks = () => {
   const dispatch = useDispatch();
@@ -17,6 +19,13 @@ const MyLibraryBooks = () => {
   const isLoading = useSelector(selectLibraryLoading);
 
   const [filter, setFilter] = useState("All books");
+
+  const filterOptions = [
+    { value: "All books", label: "All books" },
+    { value: "Unread", label: "Unread" },
+    { value: "In progress", label: "In progress" },
+    { value: "Done", label: "Done" },
+  ];
 
   useEffect(() => {
     dispatch(fetchUsersBooks());
@@ -42,23 +51,26 @@ const MyLibraryBooks = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <h2 className={styles.title}>My library</h2>
-        <select
-          className={styles.select}
+        <CustomSelect
           value={filter}
           onChange={handleFilterChange}
-        >
-          <option value="All books">All books</option>
-          <option value="Unread">Unread</option>
-          <option value="In progress">In progress</option>
-          <option value="Done">Done</option>
-        </select>
+          options={filterOptions}
+        />
       </div>
 
       {isLoading && <p className={styles.loading}>Loading...</p>}
 
       {!isLoading && myBooks.length === 0 && (
         <div className={styles.emptyState}>
-          <div className={styles.emptyIcon}>📚</div>
+          <div className={styles.emptyIcon}>
+            <img
+              className={styles.bookImg}
+              src={booksIcon}
+              alt="Empty library"
+              width={50}
+              height={50}
+            />
+          </div>
           <p className={styles.emptyText}>
             To start training, add{" "}
             <span className={styles.highlight}>some of your books</span> or from
