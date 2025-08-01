@@ -3,11 +3,15 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import styles from "./BookCard.module.css";
 import BookModal from "../BookModal/BookModal";
 
-const BookCard = ({ book, showRemoveButton = false, onRemove }) => {
+const BookCard = ({ book, showRemoveButton = false, onRemove, onClick }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleOpenModal = () => {
-    if (!showRemoveButton) setIsModalOpen(true);
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    } else if (!showRemoveButton) {
+      setIsModalOpen(true);
+    }
   };
 
   const handleCloseModal = () => setIsModalOpen(false);
@@ -16,7 +20,7 @@ const BookCard = ({ book, showRemoveButton = false, onRemove }) => {
 
   return (
     <>
-      <li className={styles.card} onClick={handleOpenModal}>
+      <li className={styles.card} onClick={handleClick}>
         <div className={styles.imageWrapper}>
           <img src={imageUrl} alt={title} className={styles.image} />
         </div>

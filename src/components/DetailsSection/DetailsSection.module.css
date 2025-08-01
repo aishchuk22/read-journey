@@ -1,0 +1,195 @@
+.detailsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detailsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.viewToggle {
+  display: flex;
+  gap: 8px;
+}
+
+.toggleButton {
+  width: 32px;
+  height: 32px;
+  background: #262626;
+  border: 1px solid #3e3e3e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #686868;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggleButton:hover {
+  border-color: #f9f9f9;
+  color: #f9f9f9;
+}
+
+.toggleButton.active {
+  background: #f9f9f9;
+  border-color: #f9f9f9;
+  color: #141414;
+}
+
+.diaryContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.diaryEntry {
+  background: #262626;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.diaryDate {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #f9f9f9;
+}
+
+.diaryStats {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.percentage {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #30b94d;
+}
+
+.pagesRead,
+.totalPages {
+  font-size: 12px;
+  line-height: 16px;
+  color: #686868;
+}
+
+.statisticsContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  background: #262626;
+  padding: 20px 0px;
+  border-radius: 12px;
+}
+
+.progressCircle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.legendColor {
+  width: 14px;
+  height: 14px;
+  background: #30b94d;
+  border-radius: 2px;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.legendText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.legendPercentage {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.legendDescription {
+  font-size: 10px;
+  line-height: 120%;
+  color: #686868;
+}
+
+.progressPercent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  fill: var(--text);
+  font-size: 18px;
+  line-height: 111%;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.loading {
+  color: var(--text);
+  text-align: center;
+  padding: 40px;
+  font-size: 16px;
+}
+
+.diaryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  color: #e90516;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.deleteButton:hover {
+  background-color: rgba(233, 5, 22, 0.1);
+}
+
+.deleteButton:active {
+  transform: scale(0.95);
+}
+
+.deleteButton svg {
+  width: 16px;
+  height: 16px;
+}

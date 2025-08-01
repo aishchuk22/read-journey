@@ -1,11 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchRecommendedBooks, addBookToLibrary, fetchUsersBooks, removeBookFromLibrary, validateAndAddBook } from './booksOperations';
+import { 
+  fetchRecommendedBooks, 
+  addBookToLibrary, 
+  fetchUsersBooks, 
+  removeBookFromLibrary, 
+  validateAndAddBook,
+  fetchBookDetails,
+  startReading,
+  stopReading,
+  deleteReadingSessionThunk
+} from './booksOperations';
 
 const initialState = {
   books: [],
   myLibraryBooks: [],
+  currentBook: null,
   isLoading: false,
   isLibraryLoading: false,
+  isReadingLoading: false,
   error: null,
   page: 1,
   totalPages: 1,
@@ -26,6 +38,9 @@ const booksSlice = createSlice({
     clearFilters: (state) => {
       state.filters = { title: '', author: '' };
       state.page = 1;
+    },
+    clearCurrentBook: (state) => {
+      state.currentBook = null;
     }
   },
   extraReducers: builder =>
@@ -44,7 +59,6 @@ const booksSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      // Додаємо обробку для validateAndAddBook
       .addCase(validateAndAddBook.pending, state => {
         state.isLoading = true;
         state.error = null;
@@ -85,8 +99,113 @@ const booksSlice = createSlice({
         state.myLibraryBooks = state.myLibraryBooks.filter(
           book => book._id !== action.meta.arg
         );
-      }),
+      })
+      .addCase(fetchBookDetails.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchBookDetails.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.currentBook = action.payload;
+      })
+      .addCase(fetchBookDetails.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(startReading.pending, state => {
+        state.isReadingLoading = true;
+        state.error = null;
+      })
+      .addCase(startReading.fulfilled, (state, action) => {
+        state.isReadingLoading = false;
+        if (state.currentBook && action.payload) {
+          state.currentBook = {
+            ...state.currentBook,
+            ...action.payload,
+            status: 'in-progress',
+            imageUrl: state.currentBook.imageUrl
+          };
+        }
+        const bookIndex = state.myLibraryBooks.findIndex(
+          book => book._id === state.currentBook?._id
+        );
+        if (bookIndex !== -1) {
+          state.myLibraryBooks[bookIndex].status = 'in-progress';
+        }
+      })
+      .addCase(startReading.rejected, (state, action) => {
+        state.isReadingLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(stopReading.pending, state => {
+        state.isReadingLoading = true;
+        state.error = null;
+      })
+      .addCase(stopReading.fulfilled, (state, action) => {
+        state.isReadingLoading = false;
+        if (state.currentBook && action.payload) {
+          state.currentBook = {
+            ...state.currentBook,
+            ...action.payload,
+            imageUrl: state.currentBook.imageUrl
+          };
+          
+          if (action.payload.progress && action.payload.progress.length > 0) {
+            const lastProgress = action.payload.progress[action.payload.progress.length - 1];
+            const isFinished = lastProgress.finishPage >= state.currentBook.totalPages;
+            state.currentBook.status = isFinished ? 'done' : 'unread';
+          }
+        }
+        
+        const bookIndex = state.myLibraryBooks.findIndex(
+          book => book._id === state.currentBook?._id
+        );
+        if (bookIndex !== -1 && action.payload) {
+          state.myLibraryBooks[bookIndex] = {
+            ...state.myLibraryBooks[bookIndex],
+            ...action.payload,
+            imageUrl: state.myLibraryBooks[bookIndex].imageUrl
+          };
+          
+          if (action.payload.progress && action.payload.progress.length > 0) {
+            const lastProgress = action.payload.progress[action.payload.progress.length - 1];
+            const isFinished = lastProgress.finishPage >= state.currentBook.totalPages;
+            state.myLibraryBooks[bookIndex].status = isFinished ? 'done' : 'unread';
+          }
+        }
+      })
+      .addCase(deleteReadingSessionThunk.pending, state => {
+        state.isReadingLoading = true;
+        state.error = null;
+      })
+      .addCase(deleteReadingSessionThunk.fulfilled, (state, action) => {
+        state.isReadingLoading = false;
+        // Оновлюємо currentBook з новими даними після видалення сесії
+        if (state.currentBook && action.payload) {
+          state.currentBook = {
+            ...state.currentBook,
+            ...action.payload,
+            imageUrl: state.currentBook.imageUrl
+          };
+        }
+        
+        // Також оновлюємо книгу в myLibraryBooks
+        const bookIndex = state.myLibraryBooks.findIndex(
+          book => book._id === state.currentBook?._id
+        );
+        if (bookIndex !== -1 && action.payload) {
+          state.myLibraryBooks[bookIndex] = {
+            ...state.myLibraryBooks[bookIndex],
+            ...action.payload,
+            imageUrl: state.myLibraryBooks[bookIndex].imageUrl
+          };
+        }
+      })
+      .addCase(deleteReadingSessionThunk.rejected, (state, action) => {
+        state.isReadingLoading = false;
+        state.error = action.payload;
+      })
 });
 
-export const { setFilters, clearFilters } = booksSlice.actions;
+export const { setFilters, clearFilters, clearCurrentBook } = booksSlice.actions;
 export const booksReducer = booksSlice.reducer;

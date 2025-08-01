@@ -1,0 +1,104 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 335px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filterText {
+  color: var(--text);
+  font-size: 10px;
+  margin: 0;
+  margin-left: 14px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  background-color: #262626;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  gap: 8px;
+  transition: border-color 0.2s;
+}
+
+.inputWrapperError {
+  border-color: #e85050;
+}
+
+.inputLabel {
+  color: #686868;
+  font-size: 12px;
+  line-height: 133%;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.input {
+  background-color: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 12px;
+  line-height: 133%;
+  outline: none;
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+}
+
+.input::placeholder {
+  color: var(--text);
+}
+
+.errorText {
+  font-size: 10px;
+  line-height: 12px;
+  color: #e85050;
+  margin-left: 14px;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: var(--text);
+  border: 1px solid rgba(249, 249, 249, 0.5);
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.29;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  max-width: 105px;
+}
+
+.button:hover {
+  background-color: var(--text);
+  color: var(--bg);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+}

@@ -93,7 +93,7 @@
   line-height: 1.29;
   transition: background-color 0.3s ease;
   text-align: center;
-  max-width: 105px;
+  max-width: 106px;
 }
 
 .button:hover {
@@ -102,7 +102,6 @@
 }
 
 .button:disabled {
-  background-color: rgba(79, 146, 247, 0.5);
   cursor: not-allowed;
 }
 

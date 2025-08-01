@@ -5,7 +5,6 @@ import css from "./RecommendedBooks.module.css";
 import {
   selectBooks,
   selectBooksLoading,
-  selectBooksError,
   selectBooksTotalPages,
   selectBooksFilters,
 } from "../../redux/books/booksSelectors";
@@ -16,7 +15,6 @@ const RecommendedBooks = () => {
   const dispatch = useDispatch();
   const books = useSelector(selectBooks);
   const isLoading = useSelector(selectBooksLoading);
-  const error = useSelector(selectBooksError);
   const totalPages = useSelector(selectBooksTotalPages);
   const filters = useSelector(selectBooksFilters);
 
@@ -108,8 +106,6 @@ const RecommendedBooks = () => {
       {!isLoading && books.length === 0 && !hasActiveFilters && (
         <p className={css.empty}>No recommended books found.</p>
       )}
-
-      {error && <p className={css.error}>Error: {error}</p>}
 
       <div className={css.sliderContainer}>
         <ul

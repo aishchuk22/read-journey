@@ -32,3 +32,35 @@ export const removeFromLibrary = async (bookId) => {
   const response = await axios.delete(`${BASE_URL}/books/remove/${bookId}`);
   return response.data;
 };
+
+export const getBookById = async (bookId) => {
+  const response = await axios.get(`${BASE_URL}/books/${bookId}`);
+  return response.data;
+};
+
+export const startReadingBook = async (bookId, { page }) => {
+  const response = await axios.post(`${BASE_URL}/books/reading/start`, {
+    id: bookId,
+    page
+  });
+  return response.data;
+};
+
+export const finishReadingBook = async (bookId, { page }) => {
+  const response = await axios.post(`${BASE_URL}/books/reading/finish`, {
+    id: bookId,
+    page
+  });
+  return response.data;
+}; 
+
+export const deleteReadingSession = async (bookId, readingId) => {
+  
+  const response = await axios.delete(`${BASE_URL}/books/reading`, {
+    params: {
+      bookId: bookId,
+      readingId: readingId
+    }
+  });
+  return response.data;
+};

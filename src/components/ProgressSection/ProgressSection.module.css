@@ -1,0 +1,34 @@
+.progressSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding-bottom: 20px;
+}
+
+.sectionTitle {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  color: var(--text);
+  margin: 0;
+}
+
+.progressDescription {
+  font-size: 14px;
+  line-height: 129%;
+  color: #686868;
+  margin: 0;
+}
+
+.progressIcon {
+  padding: 24px;
+  background: #262626;
+  border-radius: 50%;
+  margin: 6px auto 0px;
+}
+
+.starIcon {
+  width: 32px;
+  height: 32px;
+}

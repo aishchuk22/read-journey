@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getRecommendedBooks, addToLibrary, getUsersBooks, removeFromLibrary } from '../../api/booksApi';
+import { getRecommendedBooks, addToLibrary, getUsersBooks, removeFromLibrary, getBookById, startReadingBook, finishReadingBook, deleteReadingSession } from '../../api/booksApi';
 import { selectToken } from '../auth/authSelectors';
 
 export const fetchRecommendedBooks = createAsyncThunk(
@@ -134,6 +134,96 @@ export const removeBookFromLibrary = createAsyncThunk(
       return bookId;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchBookDetails = createAsyncThunk(
+  'books/fetchBookDetails',
+  async (bookId, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = selectToken(state);
+
+      if (!token) {
+        return thunkAPI.rejectWithValue('No token available');
+      }
+
+      const bookData = await getBookById(bookId);
+      
+      const allRecommended = await getRecommendedBooks({ limit: 1000 });
+      const match = allRecommended.results.find(rec =>
+        rec.title.toLowerCase().trim() === bookData.title.toLowerCase().trim() &&
+        rec.author.toLowerCase().trim() === bookData.author.toLowerCase().trim()
+      );
+
+      return {
+        ...bookData,
+        imageUrl: match?.imageUrl || "",
+      };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const startReading = createAsyncThunk(
+  'books/startReading',
+  async ({ bookId, page }, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = selectToken(state);
+
+      if (!token) {
+        return thunkAPI.rejectWithValue('No token available');
+      }
+
+
+      const data = await startReadingBook(bookId, { page });
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data?.message || error.message);
+    }
+  }
+);
+
+export const stopReading = createAsyncThunk(
+  'books/stopReading',
+  async ({ bookId, page }, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = selectToken(state);
+
+      if (!token) {
+        return thunkAPI.rejectWithValue('No token available');
+      }
+
+      const data = await finishReadingBook(bookId, { page });
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data?.message || error.message);
+    }
+  }
+);
+
+export const deleteReadingSessionThunk = createAsyncThunk(
+  'books/deleteReadingSession',
+  async ({ bookId, readingId }, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = selectToken(state);
+
+      if (!token) {
+        return thunkAPI.rejectWithValue('No token available');
+      }
+
+      const data = await deleteReadingSession(bookId, readingId);
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data?.message || error.message);
     }
   }
 );

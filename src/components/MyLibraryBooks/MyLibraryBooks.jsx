@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   fetchUsersBooks,
   removeBookFromLibrary,
@@ -16,6 +17,7 @@ import Loader from "../Loader/Loader";
 
 const MyLibraryBooks = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const myBooks = useSelector(selectMyLibraryBooks);
   const isLoading = useSelector(selectLibraryLoading);
 
@@ -94,6 +96,7 @@ const MyLibraryBooks = () => {
               book={book}
               showRemoveButton={true}
               onRemove={() => handleRemoveBook(book._id)}
+              onClick={() => navigate(`/reading/${book._id}`)}
             />
           ))}
         </ul>
