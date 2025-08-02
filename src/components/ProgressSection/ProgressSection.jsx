@@ -1,4 +1,5 @@
 import styles from "./ProgressSection.module.css";
+import starIcon from "../../assets/starIcon.png";
 
 const ProgressSection = () => {
   return (
@@ -9,7 +10,9 @@ const ProgressSection = () => {
         button below.
       </p>
       <div className={styles.progressIcon}>
-        <div className={styles.starIcon}>⭐</div>
+        <div className={styles.starIcon}>
+          <img className={styles.image} src={starIcon} alt="Star Icon" />
+        </div>
       </div>
     </div>
   );

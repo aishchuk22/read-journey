@@ -1,8 +1,9 @@
-import { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Header from "../../components/Header/Header";
+import { useState } from "react";
+
 import MobileMenu from "../../components/MobileMenu/MobileMenu";
+import Header from "../../components/Header/Header";
 
 const MainLayout = () => {
   const location = useLocation();

@@ -12,7 +12,7 @@
 }
 
 .registerCard {
-  background-color: #1f1f1f;
+  background-color: var(--bg);
   border-radius: 30px;
   display: flex;
   flex-direction: column;
@@ -68,11 +68,11 @@
 }
 
 .inputWrapper.error {
-  border-color: #e74c3c;
+  border-color: #e90516;
 }
 
 .inputWrapper.success {
-  border-color: #27ae60;
+  border-color: #30b94d;
 }
 
 .inputLabel {
@@ -121,13 +121,13 @@
 .iconError {
   width: 20px;
   height: 20px;
-  color: #e74c3c;
+  color: #e90516;
 }
 
 .iconSuccess {
   width: 20px;
   height: 20px;
-  color: #27ae60;
+  color: #30b94d;
 }
 
 .eyeButton:hover .iconDefault {
@@ -176,13 +176,13 @@
 }
 
 .errorText {
-  color: #ff6b6b;
+  color: #e90516;
   font-size: 12px;
   margin: -6px 0 0 14px;
 }
 
 .successText {
-  color: #27ae60;
+  color: #30b94d;
   font-size: 12px;
   margin: -6px 0 0 14px;
 }

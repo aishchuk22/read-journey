@@ -1,7 +1,12 @@
-import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+
+import { addReadingSchema } from "../../validation/readingFormSchema";
+import ProgressSection from "../ProgressSection/ProgressSection";
+import DetailsSection from "../DetailsSection/DetailsSection";
+
 import {
   startReading,
   stopReading,
@@ -11,10 +16,7 @@ import {
   selectCurrentBook,
   selectReadingLoading,
 } from "../../redux/books/booksSelectors";
-import { addReadingSchema } from "../../validation/readingFormSchema";
-import SuccessModal from "../SuccessModal/SuccessModal";
-import ProgressSection from "../ProgressSection/ProgressSection";
-import DetailsSection from "../DetailsSection/DetailsSection";
+import CompletionModal from "../CompletionModal/CompletionModal";
 import styles from "./ReadingDashboard.module.css";
 
 const ReadingDashboard = () => {
@@ -27,7 +29,7 @@ const ReadingDashboard = () => {
     page: "",
   });
   const [errors, setErrors] = useState({});
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
   const [activeView, setActiveView] = useState("diary");
   const [isReading, setIsReading] = useState(false);
 
@@ -92,7 +94,7 @@ const ReadingDashboard = () => {
         ).unwrap();
 
         if (pageNumber >= currentBook.totalPages) {
-          setShowSuccessModal(true);
+          setShowCompletionModal(true);
         }
       } else {
         await dispatch(
@@ -194,11 +196,8 @@ const ReadingDashboard = () => {
           />
         )}
 
-      {showSuccessModal && (
-        <SuccessModal
-          onClose={() => setShowSuccessModal(false)}
-          message="Congratulations! You have finished reading the book!"
-        />
+      {showCompletionModal && (
+        <CompletionModal onClose={() => setShowCompletionModal(false)} />
       )}
     </div>
   );

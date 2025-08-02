@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import styles from "./SuccessModal.module.css";
+import styles from "./CompletionModal.module.css";
 import { IoClose } from "react-icons/io5";
-import thumbsUpIcon from "../../assets/thumbsUpIcon.png";
+import booksIcon from "../../assets/booksIcon.png";
 
-const SuccessModal = ({ onClose }) => {
+const CompletionModal = ({ onClose }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -44,12 +44,12 @@ const SuccessModal = ({ onClose }) => {
           <IoClose size={24} />
         </button>
         <div className={styles.contentWrapper}>
-          <img className={styles.image} src={thumbsUpIcon} alt="Thumbs up" />
-          <h3 className={styles.title}>Good job</h3>
+          <img className={styles.image} src={booksIcon} alt="Books" />
+          <h3 className={styles.title}>The book is read</h3>
           <p className={styles.text}>
-            Your book is now in{" "}
-            <span className={styles.textSpan}>the library!</span> The joy knows
-            no bounds and now you can start your training
+            It was an <span className={styles.textSpan}>exciting journey,</span>{" "}
+            where each page revealed new horizons, and the characters became
+            inseparable friends.
           </p>
         </div>
       </div>
@@ -57,4 +57,4 @@ const SuccessModal = ({ onClose }) => {
   );
 };
 
-export default SuccessModal;
+export default CompletionModal;

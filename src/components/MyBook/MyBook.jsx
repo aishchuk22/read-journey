@@ -22,20 +22,6 @@ const MyBook = () => {
     );
   }
 
-  const getProgressPercentage = () => {
-    if (
-      !currentBook.progress ||
-      !currentBook.totalPages ||
-      currentBook.progress.length === 0
-    )
-      return 0;
-
-    const lastProgress = currentBook.progress[currentBook.progress.length - 1];
-    const currentPage =
-      lastProgress?.finishPage || lastProgress?.startPage || 0;
-    return Math.round((currentPage / currentBook.totalPages) * 100);
-  };
-
   const formatTimeLeft = (timeLeft) => {
     if (!timeLeft) return "";
 
@@ -51,9 +37,27 @@ const MyBook = () => {
     return parts.join(" and ");
   };
 
+  const determineReadingState = (book) => {
+    if (!book || !book.progress || book.progress.length === 0) {
+      return false;
+    }
+
+    const lastProgress = book.progress[book.progress.length - 1];
+    return !lastProgress.finishPage;
+  };
+
+  const isCurrentlyReading = determineReadingState(currentBook);
+
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>My reading</h2>
+      <div className={styles.headerSection}>
+        <h2 className={styles.title}>My reading</h2>
+        {!isCurrentlyReading && currentBook.timeLeftToRead && (
+          <p className={styles.timeLeft}>
+            {formatTimeLeft(currentBook.timeLeftToRead)}
+          </p>
+        )}
+      </div>
 
       <div className={styles.bookSection}>
         <div className={styles.bookCard}>
@@ -70,7 +74,7 @@ const MyBook = () => {
           </div>
         </div>
         <div className={styles.statusIndicator}>
-          {currentBook.status === "in-progress" ? (
+          {isCurrentlyReading ? (
             <svg
               className={styles.icon}
               viewBox="0 0 32 32"
@@ -115,18 +119,6 @@ const MyBook = () => {
             </svg>
           )}
         </div>
-        {currentBook.status === "in-progress" && (
-          <div className={styles.progressInfo}>
-            <p className={styles.progressText}>
-              {getProgressPercentage()}% completed
-            </p>
-            {currentBook.timeLeftToRead && (
-              <p className={styles.timeLeft}>
-                {formatTimeLeft(currentBook.timeLeftToRead)}
-              </p>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );

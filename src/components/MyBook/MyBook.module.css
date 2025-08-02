@@ -5,12 +5,21 @@
   border-radius: 30px;
 }
 
+.headerSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
 .title {
   font-weight: 700;
   font-size: 20px;
   line-height: 100%;
-  color: #f9f9f9;
-  margin-bottom: 40px;
+  color: var(--text);
+  margin: 0;
 }
 
 .bookSection {
@@ -67,7 +76,7 @@
 
 .icon {
   flex-shrink: 0;
-  color: red;
+  color: #e90516;
   border-radius: 50%;
 }
 
@@ -88,12 +97,13 @@
   line-height: 18px;
   color: #686868;
   margin: 0;
+  text-align: center;
 }
 
 .errorText {
   font-size: 16px;
   line-height: 20px;
-  color: #e85050;
+  color: #e90516;
   text-align: center;
   margin-top: 40px;
 }

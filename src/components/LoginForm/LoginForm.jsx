@@ -1,18 +1,20 @@
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
+
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { MdError } from "react-icons/md";
-import loginSchema from "../../validation/loginSchema";
 
 import { login } from "../../redux/auth/authOperations";
+import loginSchema from "../../validation/loginSchema";
+
+import iPhone2x from "../../assets/iPhone@2x.png";
+import iPhone from "../../assets/iPhone.png";
 import styles from "./LoginForm.module.css";
 import logo from "../../assets/react.svg";
-import iPhone from "../../assets/iPhone.png";
-import iPhone2x from "../../assets/iPhone@2x.png";
+import { MdError } from "react-icons/md";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -42,7 +44,6 @@ const LoginForm = () => {
   };
 
   const getInputWrapperClass = (fieldName) => {
-    // Показуємо помилки тільки після спроби відправки форми
     if (isSubmitted && errors[fieldName]) {
       return `${styles.inputWrapper} ${styles.error}`;
     }

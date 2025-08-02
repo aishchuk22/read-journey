@@ -1,5 +1,8 @@
-import { FiCalendar, FiBarChart2, FiTrash2 } from "react-icons/fi";
+import { HiOutlineChartPie } from "react-icons/hi2";
 import { PieChart, Pie, Cell } from "recharts";
+import { LuHourglass } from "react-icons/lu";
+import { FiTrash2 } from "react-icons/fi";
+
 import styles from "./DetailsSection.module.css";
 
 const DetailsSection = ({
@@ -52,7 +55,7 @@ const DetailsSection = ({
             }`}
             onClick={() => setActiveView("diary")}
           >
-            <FiCalendar />
+            <LuHourglass />
           </button>
           <button
             className={`${styles.toggleButton} ${
@@ -60,7 +63,7 @@ const DetailsSection = ({
             }`}
             onClick={() => setActiveView("statistics")}
           >
-            <FiBarChart2 />
+            <HiOutlineChartPie />
           </button>
         </div>
       </div>
@@ -68,40 +71,95 @@ const DetailsSection = ({
       {activeView === "diary" && (
         <div className={styles.diaryContent}>
           {currentBook?.progress && currentBook.progress.length > 0 ? (
-            currentBook.progress
-              .filter((progress) => progress.finishPage)
-              .map((progress, index) => (
-                <div key={index} className={styles.diaryEntry}>
-                  <div className={styles.diaryHeader}>
-                    <div className={styles.diaryDate}>
-                      {new Date(progress.startReading).toLocaleDateString(
-                        "uk-UA"
-                      )}
-                    </div>
-                    <button
-                      className={styles.deleteButton}
-                      onClick={() =>
-                        handleDeleteReadingSession(progress, index)
-                      }
-                      title="Delete reading session"
-                      disabled={isLoading}
+            <div className={styles.diaryTimeline}>
+              {currentBook.progress
+                .filter((progress) => progress.finishPage)
+                .reverse()
+                .map((progress, index) => {
+                  const percentageToCurrentPage = Number(
+                    (
+                      (progress.finishPage / currentBook.totalPages) *
+                      100
+                    ).toFixed(1)
+                  );
+
+                  const startTime = new Date(progress.startReading);
+                  const finishTime = new Date(progress.finishReading);
+                  const readingTimeMinutes = Math.round(
+                    (finishTime - startTime) / (1000 * 60)
+                  );
+
+                  const pagesPerHour = progress.speed || 0;
+
+                  return (
+                    <div
+                      key={progress._id || index}
+                      className={styles.diaryEntry}
                     >
-                      <FiTrash2 />
-                    </button>
-                  </div>
-                  <div className={styles.diaryStats}>
-                    <span className={styles.percentage}>
-                      {Math.round(
-                        (progress.finishPage / currentBook.totalPages) * 100
-                      )}
-                      %
-                    </span>
-                    <span className={styles.pagesRead}>
-                      {progress.finishPage - progress.startPage + 1} pages
-                    </span>
-                  </div>
-                </div>
-              ))
+                      <div className={styles.diaryHeader}>
+                        <div className={styles.leftSection}>
+                          <div className={styles.diaryDate}>
+                            {new Date(progress.startReading).toLocaleDateString(
+                              "uk-UA"
+                            )}
+                          </div>
+                          <div className={styles.diaryStats}>
+                            <div className={styles.percentage}>
+                              {percentageToCurrentPage}%
+                            </div>
+                            <div className={styles.readingTime}>
+                              {readingTimeMinutes} minutes
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className={styles.rightSection}>
+                          <div className={styles.totalPages}>
+                            {progress.finishPage} pages
+                          </div>
+                          <div className={styles.progressWithDelete}>
+                            <div className={styles.progressContainer}>
+                              <svg
+                                width="44"
+                                height="19"
+                                viewBox="0 0 44 19"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M43 2L0 7.96493V19H43V2Z"
+                                  fill="#30B94D"
+                                  fill-opacity="0.2"
+                                />
+                                <rect
+                                  width="43.5143"
+                                  height="2.17572"
+                                  rx="1"
+                                  transform="matrix(-0.987181 0.159606 0.159606 0.987181 42.9561 0)"
+                                  fill="#30B94D"
+                                />
+                              </svg>
+                              <div className={styles.readingRate}>
+                                {pagesPerHour} pages per hour
+                              </div>
+                            </div>
+                            <button
+                              className={styles.deleteButton}
+                              onClick={() =>
+                                handleDeleteReadingSession(progress, index)
+                              }
+                              title="Delete reading session"
+                              disabled={isLoading}
+                            >
+                              <FiTrash2 />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
           ) : (
             <p>No reading records yet</p>
           )}
@@ -119,7 +177,7 @@ const DetailsSection = ({
                 innerRadius={45}
                 outerRadius={55}
                 startAngle={450}
-                endAngle={90} //
+                endAngle={90}
                 dataKey="value"
                 stroke="none"
                 labelLine={false}

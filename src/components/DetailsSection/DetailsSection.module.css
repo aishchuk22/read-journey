@@ -10,56 +10,142 @@
   align-items: center;
 }
 
+.sectionTitle {
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
 .viewToggle {
   display: flex;
   gap: 8px;
 }
 
 .toggleButton {
-  width: 32px;
-  height: 32px;
-  background: #262626;
-  border: 1px solid #3e3e3e;
+  background: transparent;
+  border: none;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: #686868;
   cursor: pointer;
   transition: all 0.3s ease;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .toggleButton:hover {
-  border-color: #f9f9f9;
-  color: #f9f9f9;
+  color: var(--text);
+  transform: scale(1.1);
 }
 
 .toggleButton.active {
-  background: #f9f9f9;
-  border-color: #f9f9f9;
-  color: #141414;
+  color: var(--text);
 }
 
 .diaryContent {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  position: relative;
+  background: #262626;
+  border-radius: 12px;
+  padding: 16px 36px 16px 40px;
+  max-height: 211px;
+  overflow-y: auto;
+}
+
+.diaryContent::-webkit-scrollbar {
+  width: 4px;
+}
+
+.diaryContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.diaryContent::-webkit-scrollbar-thumb {
+  background: #686868;
+  border-radius: 2px;
+}
+
+.diaryContent::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+.diaryContent {
+  scrollbar-width: thin;
+  scrollbar-color: #686868 transparent;
+}
+
+.diaryTimeline {
+  position: relative;
+}
+
+.diaryTimeline::before {
+  content: "";
+  position: absolute;
+  left: -15px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--text);
+  z-index: 0;
 }
 
 .diaryEntry {
-  background: #262626;
-  border-radius: 12px;
-  padding: 16px;
+  position: relative;
+  margin-bottom: 16px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+}
+
+.diaryEntry::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 2px;
+  width: 12px;
+  height: 12px;
+  background: var(--text);
+  border: 4px solid #686868;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.diaryEntry:last-child {
+  margin-bottom: 0px;
+}
+
+.diaryEntry:first-child::before {
+  border-color: var(--text);
+}
+
+.diaryEntry:first-child .diaryDate {
+  color: var(--text);
+}
+
+.diaryEntry:not(:first-child) .diaryDate {
+  color: #686868;
+}
+
+.diaryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.leftSection {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 17px;
 }
 
 .diaryDate {
   font-weight: 700;
-  font-size: 14px;
-  line-height: 18px;
-  color: #f9f9f9;
+  font-size: 12px;
+  line-height: 133%;
+  margin: 0;
+  transition: color 0.3s ease;
 }
 
 .diaryStats {
@@ -69,17 +155,92 @@
 }
 
 .percentage {
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-  color: #30b94d;
+  font-size: 14px;
+  color: var(--text);
+  margin: 0;
 }
 
-.pagesRead,
-.totalPages {
+.pagesRead {
   font-size: 12px;
   line-height: 16px;
   color: #686868;
+  margin: 0;
+}
+
+.readingTime {
+  font-size: 10px;
+  line-height: 12px;
+  color: #686868;
+}
+
+.rightSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  text-align: right;
+}
+
+.totalPages {
+  font-size: 12px;
+  line-height: 133%;
+  color: #686868;
+  margin: 0;
+}
+
+.progressContainer {
+  display: flex;
+  align-items: center;
+  max-width: 43px;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.progressDiv {
+  position: relative;
+  width: 43px;
+  height: 18px;
+  background: rgba(48, 185, 77, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressWithDelete {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 0;
+  right: -28px;
+  background: none;
+  border: none;
+  color: #686868;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.deleteButton svg {
+  width: 16px;
+  height: 16px;
+}
+
+.deleteButton:hover {
+  color: var(--text);
+}
+
+.readingRate {
+  font-size: 10px;
+  line-height: 120%;
+  color: #686868;
+  text-align: center;
+  margin: 0;
 }
 
 .statisticsContent {
@@ -159,37 +320,4 @@
   text-align: center;
   padding: 40px;
   font-size: 16px;
-}
-
-.diaryHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.deleteButton {
-  background: none;
-  border: none;
-  color: #e90516;
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s ease;
-}
-
-.deleteButton:hover {
-  background-color: rgba(233, 5, 22, 0.1);
-}
-
-.deleteButton:active {
-  transform: scale(0.95);
-}
-
-.deleteButton svg {
-  width: 16px;
-  height: 16px;
 }

@@ -1,8 +1,10 @@
-import styles from "./Dashboard.module.css";
 import { useLocation } from "react-router-dom";
+
 import RecommendedDashboard from "../RecommendedDashboard/RecommendedDashboard";
 import LibraryDashboard from "../LibraryDashboard/LibraryDashboard";
 import ReadingDashboard from "../ReadingDashboard/ReadingDashboard";
+
+import styles from "./Dashboard.module.css";
 
 const Dashboard = ({ children }) => {
   const location = useLocation();

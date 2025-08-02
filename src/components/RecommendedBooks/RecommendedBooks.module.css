@@ -1,6 +1,6 @@
 .wrapper {
   padding: 20px;
-  background-color: #1f1f1f;
+  background-color: var(--bg);
   border-radius: 30px;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .empty {
-  color: #8a8a89;
+  color: #686868;
   text-align: center;
   margin: 40px 0;
 }
@@ -72,7 +72,7 @@
 }
 
 .error {
-  color: #e74c3c;
+  color: #e90516;
   text-align: center;
   margin: 20px 0;
 }

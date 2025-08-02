@@ -64,30 +64,6 @@
   white-space: nowrap;
 }
 
-.pages {
-  font-size: 10px;
-  color: #8a8a89;
-}
-
-.addButton {
-  background: transparent;
-  border: 1px solid #4f2ee8;
-  color: #f9f9f9;
-  padding: 8px 12px;
-  border-radius: 20px;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  transition: all 0.2s ease;
-  margin-top: auto;
-}
-
-.addButton:hover {
-  background: #4f2ee8;
-  color: #f9f9f9;
-}
-
 .removeButton {
   background: transparent;
   border: none;
@@ -109,14 +85,9 @@
 }
 
 .icon {
-  color: #666;
   width: 14px;
   height: 14px;
   fill: #e85050;
-}
-
-.removeButton:hover .icon {
-  color: red;
 }
 
 @media screen and (max-width: 375px) {

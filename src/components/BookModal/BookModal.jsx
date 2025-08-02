@@ -1,9 +1,11 @@
-import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import toast from "react-hot-toast";
+import { createPortal } from "react-dom";
+
 import { validateAndAddBook } from "../../redux/books/booksOperations";
+
 import styles from "./BookModal.module.css";
+import toast from "react-hot-toast";
 
 const modalRoot = document.body;
 
@@ -37,12 +39,7 @@ export default function BookModal({ book, onClose }) {
       toast.success("Book successfully added to your library!");
       onClose();
     } catch (error) {
-      const errorMessage =
-        error === "Book not found in our database. Please try again."
-          ? "Book not found in our database. Please try again."
-          : error || "Failed to add book. Please try again.";
-
-      toast.error(errorMessage);
+      toast.error(error);
     } finally {
       setIsAdding(false);
     }

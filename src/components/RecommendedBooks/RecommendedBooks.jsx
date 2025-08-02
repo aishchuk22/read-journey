@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRecommendedBooks } from "../../redux/books/booksOperations";
-import css from "./RecommendedBooks.module.css";
+import { useEffect, useState } from "react";
+
 import {
   selectBooks,
   selectBooksLoading,
   selectBooksTotalPages,
   selectBooksFilters,
 } from "../../redux/books/booksSelectors";
+
+import { fetchRecommendedBooks } from "../../redux/books/booksOperations";
 import BookCard from "../BookCard/BookCard";
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import css from "./RecommendedBooks.module.css";
 
 const RecommendedBooks = () => {
   const dispatch = useDispatch();

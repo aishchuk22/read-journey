@@ -1,10 +1,11 @@
-import { useSelector } from "react-redux";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import Navigation from "../Navigation/Navigation";
 
 import logo from "../../assets/react.svg";
 import styles from "./Header.module.css";
-import Navigation from "../Navigation/Navigation";
 
 const Header = ({ toggleMenu }) => {
   const name = useSelector((state) => state.auth.user?.name || "");

@@ -180,7 +180,6 @@ const booksSlice = createSlice({
       })
       .addCase(deleteReadingSessionThunk.fulfilled, (state, action) => {
         state.isReadingLoading = false;
-        // Оновлюємо currentBook з новими даними після видалення сесії
         if (state.currentBook && action.payload) {
           state.currentBook = {
             ...state.currentBook,
@@ -189,7 +188,6 @@ const booksSlice = createSlice({
           };
         }
         
-        // Також оновлюємо книгу в myLibraryBooks
         const bookIndex = state.myLibraryBooks.findIndex(
           book => book._id === state.currentBook?._id
         );

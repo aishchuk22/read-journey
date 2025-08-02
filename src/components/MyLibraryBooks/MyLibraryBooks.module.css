@@ -1,7 +1,7 @@
 .container {
   padding: 40px 20px 65px;
   max-width: 100%;
-  background: #1f1f1f;
+  background: var(--bg);
   border-radius: 30px;
 }
 

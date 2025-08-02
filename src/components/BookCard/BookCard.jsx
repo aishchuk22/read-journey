@@ -1,7 +1,9 @@
 import { useState } from "react";
+
+import BookModal from "../BookModal/BookModal";
+
 import { FaRegTrashAlt } from "react-icons/fa";
 import styles from "./BookCard.module.css";
-import BookModal from "../BookModal/BookModal";
 
 const BookCard = ({ book, showRemoveButton = false, onRemove, onClick }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

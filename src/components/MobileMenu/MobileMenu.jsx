@@ -1,8 +1,9 @@
-import { X } from "lucide-react";
-import styles from "./MobileMenu.module.css";
-import Navigation from "../Navigation/Navigation";
 import { useDispatch } from "react-redux";
+
 import { logout } from "../../redux/auth/authOperations";
+import Navigation from "../Navigation/Navigation";
+import styles from "./MobileMenu.module.css";
+import { X } from "lucide-react";
 
 const MobileMenu = ({ onClose, isClosing }) => {
   const dispatch = useDispatch();
