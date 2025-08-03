@@ -72,8 +72,6 @@ const MyLibraryBooks = () => {
               className={styles.bookImg}
               src={booksIcon}
               alt="Empty library"
-              width={50}
-              height={50}
             />
           </div>
           <p className={styles.emptyText}>

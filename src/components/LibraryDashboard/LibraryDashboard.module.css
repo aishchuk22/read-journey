@@ -2,10 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background-color: #1f1f1f;
+  background-color: var(--bg);
   border-radius: 12px;
-  width: 100%;
-  max-width: 400px;
 }
 
 .filterText {
@@ -174,4 +172,64 @@
   font-size: 14px;
   text-align: center;
   padding: 20px 0;
+}
+
+@media screen and (min-width: 768px) {
+  .sidebar {
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .recommendedSection {
+    gap: 20px;
+    padding: 26px 20px;
+    max-width: 313px;
+  }
+
+  .form {
+    gap: 38px;
+  }
+
+  .inputWrapper {
+    width: 295px;
+  }
+
+  .filterText {
+    font-size: 14px;
+  }
+
+  .inputWrapper {
+    padding: 16px 14px;
+    gap: 10px;
+  }
+
+  .button {
+    padding: 12px 28px;
+    font-size: 16px;
+    line-height: 112%;
+    max-width: 131px;
+  }
+
+  .recommendedTitle {
+    font-size: 20px;
+  }
+
+  .booksList {
+    gap: 20px;
+    padding-right: 20px;
+  }
+
+  .homeLinkWrapper {
+    margin-top: 0px;
+  }
+
+  .homeLink {
+    font-size: 14px;
+    line-height: 129%;
+  }
+
+  .arrow {
+    width: 24px;
+    height: 24px;
+  }
 }

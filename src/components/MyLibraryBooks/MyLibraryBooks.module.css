@@ -1,5 +1,5 @@
 .container {
-  padding: 40px 20px 65px;
+  padding: 40px 20px;
   max-width: 100%;
   background: var(--bg);
   border-radius: 30px;
@@ -71,4 +71,35 @@
   padding: 0;
   margin: 0;
   margin-top: 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 40px;
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 114%;
+  }
+
+  .booksList {
+    gap: 25px;
+  }
+
+  .emptyState {
+    padding: 86px 175px 160px;
+    margin: 0 auto;
+    gap: 10px;
+  }
+
+  .emptyIcon {
+    padding: 30px;
+  }
+
+  .bookImg {
+    width: 70px;
+    height: 70px;
+  }
 }

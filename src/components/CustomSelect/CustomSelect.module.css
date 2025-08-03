@@ -25,7 +25,6 @@
 .arrow {
   transition: transform 0.2s ease;
   flex-shrink: 0;
-  margin-left: 8px;
 }
 
 .arrowUp {
@@ -62,4 +61,21 @@
 
 .option.selected {
   color: var(--text);
+}
+
+@media screen and (min-width: 768px) {
+  .customSelect {
+    min-width: 153px;
+  }
+
+  .selectTrigger {
+    padding: 14px;
+    line-height: 129%;
+    font-size: 14px;
+  }
+
+  .option {
+    font-size: 14px;
+    line-height: 129%;
+  }
 }
