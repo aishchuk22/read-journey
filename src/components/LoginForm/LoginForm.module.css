@@ -21,11 +21,18 @@
   padding: 20px;
 }
 
+.headerLogoBox {
+  margin-bottom: 40px;
+}
+
+.headerLogoText {
+  display: none;
+}
+
 .logo {
   width: 42px;
   height: 17px;
   align-self: flex-start;
-  margin-bottom: 40px;
 }
 
 .title {
@@ -226,5 +233,79 @@
     width: 100%;
     max-width: 255px;
     min-width: 200px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 32px;
+  }
+
+  .loginCard {
+    max-width: 704px;
+    padding: 40px 164px 214px 64px;
+  }
+
+  .phoneSection {
+    display: none;
+  }
+
+  .headerLogoBox {
+    display: flex;
+    gap: 4px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 157px;
+  }
+
+  .headerLogoText {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+    display: block;
+  }
+
+  .title {
+    font-size: 64px;
+    line-height: 94%;
+    margin-bottom: 40px;
+    max-width: 444px;
+  }
+
+  .inputLabel {
+    font-size: 14px;
+  }
+
+  .inputWrapper .input {
+    font-size: 14px;
+  }
+
+  .inputWrapper .input::placeholder {
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  .form {
+    gap: 14px;
+  }
+
+  .bottomRow {
+    gap: 20px;
+    margin-top: 132px;
+    margin-bottom: 0px;
+  }
+
+  .button {
+    padding: 16px 54px;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    min-width: 166px;
+  }
+
+  .registerLink {
+    font-size: 14px;
   }
 }

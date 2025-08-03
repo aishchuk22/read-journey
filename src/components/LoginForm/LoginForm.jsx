@@ -54,7 +54,10 @@ const LoginForm = () => {
     <div className={styles.container}>
       <div className={styles.loginSection}>
         <div className={styles.loginCard}>
-          <img src={logo} alt="Logo" className={styles.logo} />
+          <div className={styles.headerLogoBox}>
+            <img src={logo} alt="Logo" className={styles.logo} />
+            <p className={styles.headerLogoText}>read journey</p>
+          </div>
 
           <h1 className={styles.title}>
             Expand your mind, reading{" "}

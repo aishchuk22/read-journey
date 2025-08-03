@@ -1,12 +1,12 @@
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { toast } from "react-hot-toast";
 import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { toast } from "react-hot-toast";
 import { MdError } from "react-icons/md";
-import registerSchema from "../../validation/registerSchema";
 
+import registerSchema from "../../validation/registerSchema";
 import { register } from "../../redux/auth/authOperations";
 import {
   getInputWrapperClass,
@@ -72,7 +72,10 @@ const RegisterForm = () => {
     <div className={styles.container}>
       <div className={styles.registerSection}>
         <div className={styles.registerCard}>
-          <img src={logo} alt="Logo" className={styles.logo} />
+          <div className={styles.headerLogoBox}>
+            <img src={logo} alt="Logo" className={styles.logo} />
+            <p className={styles.headerLogoText}>read journey</p>
+          </div>
 
           <h1 className={styles.title}>
             Expand your mind, reading{" "}
