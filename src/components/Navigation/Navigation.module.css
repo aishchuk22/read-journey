@@ -8,7 +8,14 @@
 }
 
 .link {
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #686868;
+  position: relative;
+}
+
+.active {
+  font-size: 14px;
   font-weight: 500;
   color: var(--text);
   position: relative;
@@ -17,11 +24,11 @@
 .active::after {
   content: "";
   position: absolute;
-  bottom: -4px;
+  bottom: -8px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  height: 2px;
+  height: 3px;
   background-color: #4f92f7;
   border-radius: 1px;
 }
@@ -29,5 +36,6 @@
 @media screen and (min-width: 768px) {
   .nav {
     flex-direction: row;
+    gap: 32px;
   }
 }

@@ -35,6 +35,10 @@
   text-transform: uppercase;
 }
 
+.logoutBtn {
+  display: none;
+}
+
 .burgerBtn {
   background: none;
   border: none;
@@ -61,5 +65,43 @@
 @media screen and (min-width: 768px) {
   .navWrapper {
     display: block;
+  }
+
+  .logo {
+    margin-right: 100px;
+  }
+
+  .header {
+    padding: 16px;
+    margin: 32px auto 16px;
+
+    max-width: 704px;
+  }
+
+  .right {
+    gap: 16px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logoutBtn {
+    display: flex;
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 700;
+    border: 1px solid rgba(249, 249, 249, 0.2);
+    border-radius: 50px;
+    color: var(--text);
+    background: transparent;
+    transition: background 0.2s ease;
+    justify-content: center;
+  }
+
+  .logoutBtn:hover {
+    background: var(--text);
+    color: var(--bg);
   }
 }
