@@ -1,6 +1,6 @@
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import {
   selectBooks,
@@ -25,16 +25,49 @@ const RecommendedBooks = () => {
   const [slideDirection, setSlideDirection] = useState("");
   const [nextBooks, setNextBooks] = useState([]);
   const [showNextBooks, setShowNextBooks] = useState(false);
+  const [screenSize, setScreenSize] = useState(() => {
+    return window.innerWidth >= 768 ? "tablet" : "mobile";
+  });
 
   useEffect(() => {
+    const handleResize = () => {
+      const newScreenSize = window.innerWidth >= 768 ? "tablet" : "mobile";
+      setScreenSize(newScreenSize);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const getLimit = useCallback(() => {
+    return screenSize === "mobile" ? 2 : 8;
+  }, [screenSize]);
+
+  useEffect(() => {
+    const limit = getLimit();
     dispatch(
       fetchRecommendedBooks({
         page: currentPage,
         title: filters?.title || "",
         author: filters?.author || "",
+        limit: limit,
       })
     );
-  }, [dispatch, currentPage, filters]);
+  }, [dispatch, currentPage, filters, getLimit]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+    const limit = getLimit();
+    dispatch(
+      fetchRecommendedBooks({
+        page: 1,
+        title: filters?.title || "",
+        author: filters?.author || "",
+        limit: limit,
+      })
+    );
+  }, [screenSize, dispatch, filters, getLimit]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -43,12 +76,14 @@ const RecommendedBooks = () => {
   const handlePageChange = async (newPage) => {
     if (newPage >= 1 && newPage <= totalPages && !isAnimating) {
       setIsAnimating(true);
+      const limit = getLimit();
 
       const newBooksResponse = await dispatch(
         fetchRecommendedBooks({
           page: newPage,
           title: filters?.title || "",
           author: filters?.author || "",
+          limit: limit,
         })
       );
       setNextBooks(newBooksResponse.payload.results || []);

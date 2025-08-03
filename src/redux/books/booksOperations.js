@@ -4,7 +4,7 @@ import { selectToken } from '../auth/authSelectors';
 
 export const fetchRecommendedBooks = createAsyncThunk(
   'books/fetchRecommended',
-  async ({ page = 1, title = '', author = '', limit = 2 }, thunkAPI) => {
+  async ({ page = 1, title = '', author = '', limit = 8 }, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
       const token = selectToken(state);

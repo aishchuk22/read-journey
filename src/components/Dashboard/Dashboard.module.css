@@ -23,3 +23,17 @@
     max-width: 335px;
   }
 }
+
+@media screen and (min-width: 768px) {
+  .dashboard {
+    max-width: 704px;
+    gap: 16px;
+  }
+
+  .condRenderRecommendBox {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    padding: 32px;
+  }
+}

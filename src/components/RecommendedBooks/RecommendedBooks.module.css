@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 20px;
+  padding: 40px 20px;
   background-color: var(--bg);
   border-radius: 30px;
 }
@@ -68,7 +68,7 @@
   overflow: hidden;
   width: 100%;
   position: relative;
-  height: 300px;
+  height: 248px;
 }
 
 .error {
@@ -157,6 +157,47 @@
 @media screen and (min-width: 375px) {
   .wrapper {
     max-width: 335px;
-    margin: 0 auto 10px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    max-width: 704px;
+    padding: 40px;
+  }
+
+  .title {
+    margin-bottom: 20px;
+  }
+
+  .titleText {
+    font-size: 28px;
+    line-height: 114%;
+  }
+
+  .arrowNavigation {
+    display: flex;
+    gap: 8px;
+  }
+
+  .arrowBtn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .arrowBtn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .bookList {
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+
+  .sliderContainer {
+    height: auto;
+    min-height: 520px; /* Висота для двох рядків карток */
   }
 }

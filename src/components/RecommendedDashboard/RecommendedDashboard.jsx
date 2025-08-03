@@ -29,7 +29,7 @@ const RecommendedDashboard = () => {
   };
 
   return (
-    <div className={styles.sidebar}>
+    <>
       <form className={styles.form} onSubmit={handleSubmit}>
         <p className={styles.label}>Filters:</p>
 
@@ -91,7 +91,7 @@ const RecommendedDashboard = () => {
           <FiArrowRight className={styles.arrow} />
         </Link>
       </div>
-    </div>
+    </>
   );
 };
 
