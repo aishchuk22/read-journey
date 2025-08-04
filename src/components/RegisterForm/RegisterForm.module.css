@@ -216,7 +216,7 @@
 .phoneImg {
   width: 255px;
   height: auto;
-  object-fit: none;
+  object-fit: contain;
   object-position: top;
 }
 
@@ -302,7 +302,7 @@
     justify-content: center;
     padding: 32px;
     gap: 10px;
-    max-height: 800px;
+    min-height: 800px;
   }
 
   .registerSection {
@@ -326,8 +326,6 @@
   .phoneSection {
     display: flex;
     min-width: 600px;
-    height: 736px;
-    max-height: 736px;
     min-height: 736px;
   }
 
@@ -339,16 +337,13 @@
     display: flex;
     justify-content: center;
     overflow: hidden;
-    height: 736px;
-    max-height: 736px;
-    min-height: 736px;
+
+    min-height: 741px;
   }
 
   .phoneCard {
     padding: 80px 97px 0px;
     max-width: 600px;
-    height: 736px;
-    max-height: 736px;
     min-height: 736px;
   }
 
