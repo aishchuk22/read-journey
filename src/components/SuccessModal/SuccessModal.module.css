@@ -93,3 +93,25 @@
     opacity: 1;
   }
 }
+
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 50px;
+    max-width: 342px;
+  }
+
+  .contentWrapper {
+    gap: 14px;
+  }
+
+  .image {
+    width: 70px;
+    height: 68px;
+    margin-bottom: 18px;
+  }
+
+  .title {
+    font-size: 20px;
+    line-height: 129%;
+  }
+}

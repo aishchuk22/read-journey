@@ -27,3 +27,28 @@
   border-radius: 50%;
   margin: 6px auto 0px;
 }
+
+.image {
+  width: 32px;
+  height: 32px;
+}
+
+@media screen and (min-width: 768px) {
+  .progressSection {
+    padding-bottom: 52px;
+  }
+
+  .sectionTitle {
+    font-size: 20px;
+  }
+
+  .progressIcon {
+    padding: 25px;
+    margin: 36px auto 0px;
+  }
+
+  .image {
+    width: 50px;
+    height: 50px;
+  }
+}

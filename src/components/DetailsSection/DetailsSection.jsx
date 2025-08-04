@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import { HiOutlineChartPie } from "react-icons/hi2";
 import { PieChart, Pie, Cell } from "recharts";
 import { LuHourglass } from "react-icons/lu";
@@ -39,6 +41,27 @@ const DetailsSection = ({
     { name: "read", value: percentage },
     { name: "remaining", value: 100 - percentage },
   ];
+
+  const [chartSize, setChartSize] = useState({
+    width: 120,
+    height: 120,
+    radius: 55,
+  });
+
+  useEffect(() => {
+    const updateChartSize = () => {
+      if (window.innerWidth >= 768) {
+        setChartSize({ width: 138, height: 138, radius: 65 });
+      } else {
+        setChartSize({ width: 120, height: 120, radius: 55 });
+      }
+    };
+
+    updateChartSize();
+    window.addEventListener("resize", updateChartSize);
+
+    return () => window.removeEventListener("resize", updateChartSize);
+  }, []);
 
   const COLORS = ["#30b94d", "#1f1f1f"];
 
@@ -120,8 +143,7 @@ const DetailsSection = ({
                           <div className={styles.progressWithDelete}>
                             <div className={styles.progressContainer}>
                               <svg
-                                width="44"
-                                height="19"
+                                className={styles.greenBox}
                                 viewBox="0 0 44 19"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +151,7 @@ const DetailsSection = ({
                                 <path
                                   d="M43 2L0 7.96493V19H43V2Z"
                                   fill="#30B94D"
-                                  fill-opacity="0.2"
+                                  fillOpacity="0.2"
                                 />
                                 <rect
                                   width="43.5143"
@@ -169,13 +191,13 @@ const DetailsSection = ({
       {activeView === "statistics" && (
         <div className={styles.statisticsContent}>
           <div className={styles.progressCircle}>
-            <PieChart width={120} height={120}>
+            <PieChart width={chartSize.width} height={chartSize.height}>
               <Pie
                 data={chartData}
-                cx={55}
-                cy={55}
-                innerRadius={45}
-                outerRadius={55}
+                cx={chartSize.radius}
+                cy={chartSize.radius}
+                innerRadius={chartSize.radius - 10}
+                outerRadius={chartSize.radius}
                 startAngle={450}
                 endAngle={90}
                 dataKey="value"
