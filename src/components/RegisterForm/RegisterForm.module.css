@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   padding: 20px;
   gap: 10px;
 }
@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 500px;
+  max-width: 335px;
   padding: 20px;
 }
 
@@ -66,7 +66,6 @@
   padding: 14px;
   gap: 10px;
   transition: border-color 0.2s;
-  border: 2px solid transparent;
   box-sizing: border-box;
 }
 
@@ -75,10 +74,12 @@
 }
 
 .inputWrapper.error {
+  border: 1px solid transparent;
   border-color: #e90516;
 }
 
 .inputWrapper.success {
+  border: 1px solid transparent;
   border-color: #30b94d;
 }
 
@@ -208,41 +209,21 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: 500px;
+  max-width: 335px;
   overflow: hidden;
 }
 
-.phoneImage {
+.phoneImg {
   width: 255px;
   height: auto;
   object-fit: none;
   object-position: top;
 }
 
-@media screen and (min-width: 375px) {
-  .container {
-    padding: 32px;
-  }
-
-  .registerCard {
-    max-width: 335px;
-  }
-
-  .phoneCard {
-    max-width: 335px;
-  }
-}
-
 @media screen and (max-width: 375px) {
   .phoneCard {
     max-width: 100%;
     padding: 15px 15px 0px;
-  }
-
-  .phoneImage {
-    width: 100%;
-    max-width: 255px;
-    min-width: 200px;
   }
 }
 
@@ -287,7 +268,6 @@
   }
 
   .inputWrapper .input::placeholder {
-    color: var(--text);
     font-size: 14px;
   }
 
@@ -312,5 +292,67 @@
 
   .loginLink {
     font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 32px;
+    gap: 10px;
+    max-height: 800px;
+  }
+
+  .registerSection {
+    display: flex;
+    justify-content: center;
+  }
+
+  .registerCard {
+    padding: 40px 64px;
+  }
+
+  .headerLogoBox {
+    margin-bottom: 107px;
+  }
+
+  .inputWrapper {
+    width: 472px;
+    padding: 16px 14px;
+  }
+
+  .phoneSection {
+    display: flex;
+    min-width: 600px;
+    height: 736px;
+    max-height: 736px;
+    min-height: 736px;
+  }
+
+  .bottomRow {
+    margin-top: 68px;
+  }
+
+  .phoneSection {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    height: 736px;
+    max-height: 736px;
+    min-height: 736px;
+  }
+
+  .phoneCard {
+    padding: 80px 97px 0px;
+    max-width: 600px;
+    height: 736px;
+    max-height: 736px;
+    min-height: 736px;
+  }
+
+  .phoneImg {
+    width: 100%;
   }
 }

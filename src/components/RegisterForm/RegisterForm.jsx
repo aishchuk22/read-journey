@@ -16,6 +16,8 @@ import styles from "./RegisterForm.module.css";
 import logo from "../../assets/react.svg";
 import iPhone from "../../assets/iPhone.png";
 import iPhone2x from "../../assets/iPhone@2x.png";
+import bigPhone from "../../assets/bigPhone.png";
+import bigPhone2x from "../../assets/bigPhone@2x.png";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -187,12 +189,17 @@ const RegisterForm = () => {
 
       <div className={styles.phoneSection}>
         <div className={styles.phoneCard}>
-          <img
-            src={iPhone}
-            srcSet={`${iPhone} 1x, ${iPhone2x} 2x`}
-            alt="Phone mockup"
-            className={styles.phoneImage}
-          />
+          <picture className={styles.phoneImage}>
+            <source
+              media="(min-width: 1280px)"
+              srcSet={`${bigPhone} 1x, ${bigPhone2x} 2x`}
+            />
+            <source
+              media="(max-width: 767px)"
+              srcSet={`${iPhone} 1x, ${iPhone2x} 2x`}
+            />
+            <img src={iPhone} alt="Phone mockup" className={styles.phoneImg} />
+          </picture>
         </div>
       </div>
     </div>

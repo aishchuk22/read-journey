@@ -363,6 +363,7 @@
 
   .rightSection {
     gap: 18px;
+    align-items: center;
   }
 
   .totalPages {
