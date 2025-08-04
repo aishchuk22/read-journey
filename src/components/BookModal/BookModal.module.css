@@ -127,3 +127,10 @@
     padding: 14px 28px;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .modal {
+    width: 500px;
+    padding: 50px;
+  }
+}

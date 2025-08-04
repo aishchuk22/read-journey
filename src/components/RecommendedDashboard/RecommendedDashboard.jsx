@@ -5,6 +5,7 @@ import { FiArrowRight } from "react-icons/fi";
 import { setFilters } from "../../redux/books/booksSlice";
 import { selectBooksFilters } from "../../redux/books/booksSelectors";
 import styles from "./RecommendedDashboard.module.css";
+import booksIcon from "../../assets/booksIcon.png";
 
 const RecommendedDashboard = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const RecommendedDashboard = () => {
   return (
     <>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <p className={styles.label}>Filters:</p>
+        <p className={styles.label}>Filters</p>
 
         <div className={styles.group}>
           <div className={styles.inputWrapper}>
@@ -90,6 +91,18 @@ const RecommendedDashboard = () => {
           <span className={styles.linkText}>My library</span>
           <FiArrowRight className={styles.arrow} />
         </Link>
+      </div>
+
+      <div className={styles.desktopBox}>
+        <img
+          src={booksIcon}
+          alt="Books Icon"
+          className={styles.desktopBooksIcon}
+        />
+        <p className={styles.desktopText}>
+          "Books are <span className={styles.highlight}>windows</span> to the
+          world, and reading is a journey into the unknown."
+        </p>
       </div>
     </>
   );

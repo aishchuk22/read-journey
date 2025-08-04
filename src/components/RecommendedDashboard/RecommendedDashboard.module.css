@@ -171,6 +171,10 @@
   color: var(--text);
 }
 
+.desktopBox {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
   .label {
     font-size: 14px;
@@ -229,6 +233,32 @@
   }
 
   .arrow:hover {
+    color: var(--text);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .desktopBox {
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    background: #262626;
+    padding: 15px 20px;
+  }
+
+  .desktopBooksIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .desktopText {
+    font-size: 14px;
+    color: #686868;
+  }
+
+  .highlight {
     color: var(--text);
   }
 }

@@ -22,19 +22,23 @@ const Header = ({ toggleMenu }) => {
 
   return (
     <header className={styles.header}>
-      <img
-        src={logo}
-        alt="Logo"
-        className={styles.logo}
+      <div
+        className={styles.logoWrapper}
         onClick={() => navigate("/recommended")}
-      />
+      >
+        <img src={logo} alt="Logo" className={styles.logo} />
+        <p className={styles.logoText}>read journey</p>
+      </div>
 
       <nav className={styles.navWrapper}>
         <Navigation />
       </nav>
 
       <div className={styles.right}>
-        <div className={styles.avatar}>{firstLetter}</div>
+        <div className={styles.avatarWrapper}>
+          <div className={styles.avatar}>{firstLetter}</div>
+          <p className={styles.fullName}>{name}</p>
+        </div>
 
         <button className={styles.logoutBtn} onClick={handleLogout}>
           Log out

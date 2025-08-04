@@ -26,12 +26,18 @@ const RecommendedBooks = () => {
   const [nextBooks, setNextBooks] = useState([]);
   const [showNextBooks, setShowNextBooks] = useState(false);
   const [screenSize, setScreenSize] = useState(() => {
+    if (window.innerWidth >= 1280) return "desktop";
     return window.innerWidth >= 768 ? "tablet" : "mobile";
   });
 
   useEffect(() => {
     const handleResize = () => {
-      const newScreenSize = window.innerWidth >= 768 ? "tablet" : "mobile";
+      let newScreenSize = "mobile";
+      if (window.innerWidth >= 1280) {
+        newScreenSize = "desktop";
+      } else if (window.innerWidth >= 768) {
+        newScreenSize = "tablet";
+      }
       setScreenSize(newScreenSize);
     };
 
@@ -41,6 +47,7 @@ const RecommendedBooks = () => {
   }, []);
 
   const getLimit = useCallback(() => {
+    if (screenSize === "desktop") return 10;
     return screenSize === "mobile" ? 2 : 8;
   }, [screenSize]);
 

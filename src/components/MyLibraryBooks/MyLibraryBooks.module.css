@@ -103,3 +103,21 @@
     height: 70px;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .container {
+    min-width: 847px;
+    min-height: 651px;
+    padding: 40px 40px 0px;
+  }
+
+  .emptyState {
+    padding: 147px 206px 232px;
+    margin: 0 auto;
+    gap: 20px;
+  }
+
+  .booksList {
+    gap: 25px 20px;
+  }
+}

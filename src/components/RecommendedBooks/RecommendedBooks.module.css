@@ -198,6 +198,21 @@
 
   .sliderContainer {
     height: auto;
-    min-height: 520px; /* Висота для двох рядків карток */
+    min-height: 520px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .wrapper {
+    min-width: 847px;
+    padding: 40px;
+  }
+
+  .bookList {
+    gap: 20px;
+  }
+
+  .sliderContainer {
+    height: 500px;
   }
 }

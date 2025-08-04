@@ -104,3 +104,9 @@
     max-width: 100%;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .card {
+    width: calc((100% - 20px * 4) / 5);
+  }
+}
