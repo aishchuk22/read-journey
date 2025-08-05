@@ -175,7 +175,7 @@ const ReadingDashboard = () => {
           </div>
         </div>
 
-        <button type="submit" className={styles.button} disabled={isLoading}>
+        <button type="submit" className={styles.button}>
           {isReading ? "To stop" : "To start"}
         </button>
       </form>

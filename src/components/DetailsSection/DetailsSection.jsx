@@ -103,7 +103,8 @@ const DetailsSection = ({
                 .map((progress, index) => {
                   const percentageToCurrentPage = Number(
                     (
-                      (progress.finishPage / currentBook.totalPages) *
+                      ((progress.finishPage - progress.startPage) /
+                        currentBook.totalPages) *
                       100
                     ).toFixed(1)
                   );
@@ -140,7 +141,7 @@ const DetailsSection = ({
 
                         <div className={styles.rightSection}>
                           <div className={styles.totalPages}>
-                            {progress.finishPage} pages
+                            {progress.finishPage - progress.startPage} pages
                           </div>
                           <div className={styles.progressWithDelete}>
                             <div className={styles.progressContainer}>
