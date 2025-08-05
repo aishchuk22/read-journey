@@ -227,6 +227,10 @@
   margin: 0;
 }
 
+.statisticsDesktopText {
+  display: none;
+}
+
 .statisticsContent {
   display: flex;
   flex-direction: column;
@@ -288,8 +292,8 @@
 
 .progressPercent {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 53%;
+  left: 54%;
   transform: translate(-50%, -50%);
   z-index: 1;
   fill: var(--text);
@@ -410,9 +414,68 @@
     gap: 15px;
   }
 
-  .legendItem {
+  .legendColor {
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+
+  .legendText {
+    gap: 8px;
+  }
+
+  .legendPercentage {
+    font-size: 20px;
+  }
+
+  .legendDescription {
+    font-size: 12px;
+    line-height: 117%;
+  }
+
+  .progressPercent {
+    font-size: 20px;
+    line-height: 100%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .detailsSection {
+    min-width: 313px;
+    gap: 20px;
+  }
+
+  .toggleButton {
+    width: 20px;
+    height: 20px;
+  }
+
+  .diaryContent {
+    max-height: 373px;
+    padding: 20px 38px 28px 46px;
+  }
+
+  .statisticsDesktopText {
     display: flex;
-    align-items: flex-start;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #686868;
+    max-width: 293px;
+  }
+
+  .statisticsContent {
+    gap: 10px;
+    padding: 20px 0px;
+  }
+
+  .progressCircle {
+    width: 189px;
+    height: 189px;
+  }
+
+  .legend {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 15px;
   }
 

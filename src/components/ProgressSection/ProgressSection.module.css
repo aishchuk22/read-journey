@@ -52,3 +52,16 @@
     height: 50px;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .progressSection {
+    padding-bottom: 183px;
+  }
+
+  .progressIcon {
+    padding: 24px;
+    background: #262626;
+    border-radius: 50%;
+    margin: 46px auto 0px;
+  }
+}

@@ -133,3 +133,36 @@
     max-width: 114px;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .sidebar {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .filterText {
+    line-height: 129%;
+  }
+
+  .inputLabel {
+    font-size: 14px;
+    line-height: 129%;
+  }
+
+  .inputWrapper {
+    width: 313px;
+  }
+
+  .input {
+    font-size: 14px;
+    line-height: 129%;
+  }
+
+  .form {
+    gap: 20px;
+  }
+
+  .recommendedSection {
+    padding: 20px;
+  }
+}

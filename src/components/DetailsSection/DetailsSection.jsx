@@ -50,7 +50,9 @@ const DetailsSection = ({
 
   useEffect(() => {
     const updateChartSize = () => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth >= 1280) {
+        setChartSize({ width: 189, height: 189, radius: 85 });
+      } else if (window.innerWidth >= 768) {
         setChartSize({ width: 138, height: 138, radius: 65 });
       } else {
         setChartSize({ width: 120, height: 120, radius: 55 });
@@ -189,38 +191,46 @@ const DetailsSection = ({
       )}
 
       {activeView === "statistics" && (
-        <div className={styles.statisticsContent}>
-          <div className={styles.progressCircle}>
-            <PieChart width={chartSize.width} height={chartSize.height}>
-              <Pie
-                data={chartData}
-                cx={chartSize.radius}
-                cy={chartSize.radius}
-                innerRadius={chartSize.radius - 10}
-                outerRadius={chartSize.radius}
-                startAngle={450}
-                endAngle={90}
-                dataKey="value"
-                stroke="none"
-                labelLine={false}
-                cornerRadius={5}
-              >
-                {chartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index]} />
-                ))}
-              </Pie>
-            </PieChart>
-            <span className={styles.progressPercent}>100%</span>
-          </div>
+        <div className={styles.statisticsContainer}>
+          <p className={styles.statisticsDesktopText}>
+            Each page, each chapter is a new round of knowledge, a new step
+            towards understanding. By rewriting statistics, we create our own
+            reading history.
+          </p>
+          <div className={styles.statisticsContent}>
+            <div className={styles.progressCircle}>
+              <PieChart width={chartSize.width} height={chartSize.height}>
+                <Pie
+                  data={chartData}
+                  cx={chartSize.width / 2}
+                  cy={chartSize.height / 2}
+                  innerRadius={chartSize.radius - 10}
+                  outerRadius={chartSize.radius}
+                  startAngle={450}
+                  endAngle={90}
+                  dataKey="value"
+                  stroke="none"
+                  labelLine={false}
+                  cornerRadius={5}
+                >
+                  {chartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                  ))}
+                </Pie>
+              </PieChart>
 
-          <div className={styles.legend}>
-            <div className={styles.legendItem}>
-              <div className={styles.legendColor}></div>
-              <div className={styles.legendText}>
-                <span className={styles.legendPercentage}>{percentage}%</span>
-                <span className={styles.legendDescription}>
-                  {pagesRead} pages read
-                </span>
+              <span className={styles.progressPercent}>100%</span>
+            </div>
+
+            <div className={styles.legend}>
+              <div className={styles.legendItem}>
+                <div className={styles.legendColor}></div>
+                <div className={styles.legendText}>
+                  <span className={styles.legendPercentage}>{percentage}%</span>
+                  <span className={styles.legendDescription}>
+                    {pagesRead} pages read
+                  </span>
+                </div>
               </div>
             </div>
           </div>

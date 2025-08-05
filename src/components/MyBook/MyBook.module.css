@@ -142,12 +142,6 @@
     height: 50px;
   }
 
-  .icon {
-    flex-shrink: 0;
-    color: #e90516;
-    border-radius: 50%;
-  }
-
   .progressInfo {
     text-align: center;
   }
@@ -160,8 +154,30 @@
   .errorText {
     font-size: 16px;
     line-height: 20px;
-    color: #e90516;
-    text-align: center;
     margin-top: 40px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    min-width: 847px;
+    min-height: 651px;
+    padding: 40px 40px 42px;
+  }
+
+  .headerSection {
+    margin-bottom: 44px;
+  }
+
+  .bookSection {
+    gap: 25px;
+  }
+
+  .bookImageWrapper {
+    max-width: 224px;
+  }
+
+  .bookImage {
+    min-height: 340px;
   }
 }
